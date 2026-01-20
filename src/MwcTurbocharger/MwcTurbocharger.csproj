@@ -75,6 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AudioHandler.cs" />
+    <Compile Include="BoostSave.cs" />
+    <Compile Include="GearRatiosHandler.cs" />
     <Compile Include="Gui\GuiDebug.cs" />
     <Compile Include="Gui\GuiDebugElement.cs" />
     <Compile Include="Gui\GuiDebugInfo.cs" />
@@ -88,6 +90,7 @@
     <Compile Include="ModPart\TurboBigBlowoffValve.cs" />
     <Compile Include="ModPart\TurboBigExhaustOutletTube.cs" />
     <Compile Include="ModPart\TurboBigIntercoolerTube.cs" />
+    <Compile Include="TransmissionHandler.cs" />
     <Compile Include="Turbo\TurboPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Turbo\BackfireLogic.cs" />
