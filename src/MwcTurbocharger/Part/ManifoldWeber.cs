@@ -10,8 +10,8 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partName => "Weber Manifold";
 		protected override string partId => "manifold-weberCarb";
-		protected override Vector3 partInstallPosition => new Vector3(-0.009812f, -0.12167f, 0.031688f);
-		protected override Vector3 partInstallRotation => new Vector3(72.5f, 0, 0);
+		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		public ManifoldWeber(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{

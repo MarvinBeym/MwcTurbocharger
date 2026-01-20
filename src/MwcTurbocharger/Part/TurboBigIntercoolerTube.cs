@@ -7,8 +7,8 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partId => "turboBig-intercooler-tube";
 		protected override string partName => "Racing Turbo Intercooler Tube";
-		protected override Vector3 partInstallPosition => new Vector3(-0.346378f, 0.178461f, 0.2662498f);
-		protected override Vector3 partInstallRotation => new Vector3(5, 0, 0);
+		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		public TurboBigIntercoolerTube(Intercooler parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{ 

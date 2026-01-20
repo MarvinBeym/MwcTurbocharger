@@ -12,8 +12,8 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partId => "boost-gauge";
 		protected override string partName => "Boost Gauge";
-		protected override Vector3 partInstallPosition => new Vector3(0.368f, -0.029f, 0.154f);
-		protected override Vector3 partInstallRotation => new Vector3(90, 0, 0);
+		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		protected BoostGaugeLogic logic;
 

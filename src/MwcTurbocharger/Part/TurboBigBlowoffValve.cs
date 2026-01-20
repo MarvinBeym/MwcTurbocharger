@@ -8,8 +8,8 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partId => "turboBig-blowoff-valve";
 		protected override string partName => "Racing Turbo Blowoff Valve";
-		protected override Vector3 partInstallPosition => new Vector3(0.026583f, 0.139111f, 0.15561f);
-		protected override Vector3 partInstallRotation => new Vector3(0, 0, 45);
+		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		public TurboBigBlowoffValve(TurboBigIntercoolerTube parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
