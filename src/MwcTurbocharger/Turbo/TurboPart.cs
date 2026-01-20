@@ -7,11 +7,12 @@ using MwcModApi.Caching;
 using MwcModApi.Parts;
 using MwcModApi.Parts.EventSystem;
 using MwcModApi.Tools;
+using MwcTurbocharger.ModPart;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
 
 
-namespace MwcTurbocharger.ModPart
+namespace MwcTurbocharger.Turbo
 {
 	public abstract class TurboPart : DerivablePart
 	{

@@ -88,7 +88,7 @@
     <Compile Include="ModPart\TurboBigBlowoffValve.cs" />
     <Compile Include="ModPart\TurboBigExhaustOutletTube.cs" />
     <Compile Include="ModPart\TurboBigIntercoolerTube.cs" />
-    <Compile Include="ModPart\TurboPart.cs" />
+    <Compile Include="Turbo\TurboPart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Turbo\BackfireLogic.cs" />
     <Compile Include="Turbo\BoostGaugeLogic.cs" />
