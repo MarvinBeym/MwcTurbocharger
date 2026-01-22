@@ -78,7 +78,7 @@ namespace MwcTurbocharger.ModPart
 			TurboConditionStorage turboConditionStorage = new TurboConditionStorage();
 			turboConditionStorage.AddConditions(new Condition[]
 			{
-				new Condition("weberCarb", 0.5f),
+				new Condition("racingCarb", 0.5f),
 				new Condition("twinCarb", 0.2f),
 			});
 			return turboConditionStorage;
