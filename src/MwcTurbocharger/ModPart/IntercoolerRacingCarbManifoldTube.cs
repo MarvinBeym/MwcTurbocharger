@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace MwcTurbocharger.ModPart
 {
-	public class IntercoolerManifoldTube : DerivablePart
+	public class IntercoolerRacingCarbManifoldTube : DerivablePart
 	{
-		protected override string partId => "intercooler-manifold-weberCarb-tube";
-		protected override string partName => "Weber Intercooler-Manifold Tube";
-		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override string partId => "intercooler-manifold-racingCarb-tube";
+		protected override string partName => "Intercooler Racing Carb Manifold Tube";
+		protected override Vector3 partInstallPosition => new Vector3(0.082089f, 0.037259f, -0.29815f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
-		public IntercoolerManifoldTube(Manifold parent) : base(parent, MwcTurbocharger.partBaseInfo)
+		public IntercoolerRacingCarbManifoldTube(RacingCarbManifold parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
 			AddClampModel(
 				new Vector3(-0.053f, -0.2475f, -0.362f),
