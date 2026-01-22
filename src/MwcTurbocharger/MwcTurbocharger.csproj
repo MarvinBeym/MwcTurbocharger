@@ -85,7 +85,7 @@
     <Compile Include="ModPart\ExhausHeader.cs" />
     <Compile Include="ModPart\Intercooler.cs" />
     <Compile Include="ModPart\IntercoolerManifoldWeberTube.cs" />
-    <Compile Include="ModPart\ManifoldWeber.cs" />
+    <Compile Include="ModPart\Manifold.cs" />
     <Compile Include="ModPart\TurboBig.cs" />
     <Compile Include="ModPart\TurboBigBlowoffValve.cs" />
     <Compile Include="ModPart\TurboBigExhaustOutletTube.cs" />

@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace MwcTurbocharger.ModPart
 {
-	public class ManifoldWeber : DerivablePart
+	public class Manifold : DerivablePart
 	{
-		protected override string partName => "Weber Manifold";
-		protected override string partId => "manifold-weberCarb";
+		protected override string partName => "Manifold";
+		protected override string partId => "manifold";
 		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
-		public ManifoldWeber(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
+		public Manifold(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
 			AddClampModel(new Vector3(0.1275f, -0.0009f, -0.02f), new Vector3(0, 0, 0),
 				new Vector3(0.59f, 0.59f, 0.59f));
