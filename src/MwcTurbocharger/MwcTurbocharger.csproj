@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="MwcModApi">
       <HintPath>..\..\..\..\..\..\..\Spiele\Steam\steamapps\common\My Winter Car\Mods\MwcModApi.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\..\..\..\..\Spiele\Steam\steamapps\common\My Winter Car\mywintercar_Data\Managed\Newtonsoft.Json.dll</HintPath>
@@ -84,8 +85,8 @@
     <Compile Include="ModPart\BoostGauge.cs" />
     <Compile Include="ModPart\ExhausHeader.cs" />
     <Compile Include="ModPart\Intercooler.cs" />
-    <Compile Include="ModPart\IntercoolerManifoldWeberTube.cs" />
-    <Compile Include="ModPart\Manifold.cs" />
+    <Compile Include="ModPart\IntercoolerRacingCarbManifoldTube.cs" />
+    <Compile Include="ModPart\RacingCarbManifold.cs" />
     <Compile Include="ModPart\TurboBig.cs" />
     <Compile Include="ModPart\TurboBigBlowoffValve.cs" />
     <Compile Include="ModPart\TurboBigExhaustOutletTube.cs" />

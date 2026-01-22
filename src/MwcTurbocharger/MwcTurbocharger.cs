@@ -54,10 +54,10 @@ namespace MwcTurbocharger
 		private bool ecuModInstalled = false;
 
 		//ModParts
-		private Manifold manifold;
+		private RacingCarbManifold racingCarbManifold;
 		private BoostGauge boostGauge;
 		private Intercooler intercooler;
-		private IntercoolerManifoldTube intercoolerManifoldTube;
+		private IntercoolerRacingCarbManifoldTube intercoolerRacingCarbManifoldTube;
 		private ExhaustHeader exhaustHeader;
 		private TurboBigIntercoolerTube turboBigIntercoolerTube;
 		private TurboBigBlowoffValve turboBigBlowoffValve;
@@ -65,7 +65,9 @@ namespace MwcTurbocharger
 		private TurboBigExhaustOutletTube turboBigExhaustOutletTube;
 
 		//GameParts
-		private GamePart weberCarb;
+		private GamePart carb;
+		private GamePart twoBarrelCarb;
+		private GamePart racingCarb;
 		private GamePart cylinderHead;
 
 		private GamePart ceramicHeaders;
@@ -76,7 +78,7 @@ namespace MwcTurbocharger
 		private GamePart dashboard;
 
 		private Kit turboBigKit;
-		private Kit ManifoldKit;
+		private Kit racingCarbManifoldKit;
 
 
 		public override void ModSetup()
@@ -116,7 +118,11 @@ namespace MwcTurbocharger
 			partBaseInfo = new PartBaseInfo(this, assetsBundle, partsList);
 
 			//GameParts
-			weberCarb = new GamePart("VINP_Carburettor", "4 Barrell Racing Carb(VINXX)");
+
+			carb = new GamePart("VINP_Carburettor", "Carburettor(VINXX)");
+			twoBarrelCarb = new GamePart("VINP_Carburettor", "2 Barrel Carb(VINXX)");
+			racingCarb = new GamePart("VINP_Carburettor", "4 Barrell Racing Carb(VINXX)");
+			
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
 
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
@@ -136,10 +142,10 @@ namespace MwcTurbocharger
 			}
 
 			//ModParts
-			//manifold = new Manifold(weberCarb);
+			racingCarbManifold = new RacingCarbManifold(racingCarb);
 			//boostGauge = new BoostGauge(dashboard);
 			//intercooler = new Intercooler();
-			//intercoolerManifoldTube = new IntercoolerManifoldTube(manifold);
+			intercoolerRacingCarbManifoldTube = new IntercoolerRacingCarbManifoldTube(racingCarbManifold);
 			exhaustHeader = new ExhaustHeader(cylinderHead);
 			//turboBigIntercoolerTube = new TurboBigIntercoolerTube(intercooler);
 			//turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
@@ -173,15 +179,15 @@ namespace MwcTurbocharger
 					turboBigExhaustOutletTube,
 				}
 			);
-
-			ManifoldKit = new Kit(
+			*/
+			racingCarbManifoldKit = new Kit(
 				"Weber Kit",
 				new Part[]
 				{
-					manifold,
-					intercoolerManifoldTube
+					racingCarbManifold,
+					intercoolerRacingCarbManifoldTube
 				});
-			*/
+			
 
 			SetupShopItems();
 			SetupPartInstallBlocking();
@@ -200,12 +206,13 @@ namespace MwcTurbocharger
 			{
 				//new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
 				//new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
+				new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit),
 				//new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
 				//new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),
 				new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader),
 			});
 		}
-
+		
 		public void SetupPartInstallBlocking()
 		{
 			var gamePartExhaustHeaders = new[]
@@ -221,6 +228,9 @@ namespace MwcTurbocharger
 			{
 				gamePart.BlockOtherPartInstallOnEvent(PartEvent.Type.Install, exhaustHeader);
 			}
+
+			carb.BlockOtherPartInstallOnEvent(PartEvent.Type.Install, racingCarbManifold);
+			twoBarrelCarb.BlockOtherPartInstallOnEvent(PartEvent.Type.Install, racingCarbManifold);
 		}
 
 		public void ModSettings()
