@@ -22,9 +22,9 @@ namespace MwcTurbocharger.ModPart
 				new Screw(new Vector3(0.2390f, 0.081f, 0.0260f), new Vector3(180, 0, 0)),
 			}, 0.6f, 8);
 			
-			PaintingSystem
-				.Setup(partBaseInfo.mod, this, gameObject.FindChild("intercooler-main"))
-				.SetMetallic(0.8f, 0.5f);
+			//PaintingSystem
+			//	.Setup(partBaseInfo.mod, this, gameObject.FindChild("intercooler-main"))
+			//	.SetMetallic(0.8f, 0.5f);
 		}
 
 		

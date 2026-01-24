@@ -30,7 +30,7 @@ namespace MwcTurbocharger.ModPart
 			AddScrew(new Screw(new Vector3(0.0540f, -0.09f, -0.091f), new Vector3(0, -90, 0),
 				Screw.Type.Normal, 0.5f));
 
-			PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
+			//PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
 
 			GameObject boostChangingGameObject = turboBigBlowoffValve.gameObject.transform
 				.FindChild("turboBig-blowoff-valve-main").gameObject;
