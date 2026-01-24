@@ -102,7 +102,12 @@
     <Compile Include="Turbo\TurboLogic.cs" />
     <Compile Include="Turbo\TurboLogicRequiredParts.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\backFire_once.wav" />
+    <EmbeddedResource Include="Assets\grinding sound.wav" />
+    <EmbeddedResource Include="Assets\turbocharger_blowoff.wav" />
+    <EmbeddedResource Include="Assets\turbocharger_loop.wav" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\turbocharger.unity3d" />
   </ItemGroup>
