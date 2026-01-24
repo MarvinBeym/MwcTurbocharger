@@ -58,10 +58,15 @@ namespace MwcTurbocharger
 
 			analogNeedle = this.transform.FindChild("boost-gauge-needle").gameObject;
 			analogNeedleAnimation = analogNeedle.GetComponent<Animation>();
-			foreach (Material material in this.transform.FindChild("boost-gauge-casing").GetComponent<Renderer>().materials)
+			foreach (Material material in this.transform.FindChild("boost-gauge-main").GetComponent<Renderer>().materials)
 			{
-				if (!material.name.Contains("boost-gauge-foreground")) { continue; }
+				if (!material.name.Contains("boost-gauge-foreground"))
+				{
+					continue;
+				}
 				foregroundMaterial = material;
+				break;
+
 			}
 			foregroundMaterial.SetColor("_Color", availableColors[selectedColor]);
 
