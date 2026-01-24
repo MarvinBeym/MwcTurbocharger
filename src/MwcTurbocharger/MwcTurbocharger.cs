@@ -149,18 +149,19 @@ namespace MwcTurbocharger
 			intercooler = new Intercooler();
 			intercoolerRacingCarbManifoldTube = new IntercoolerRacingCarbManifoldTube(racingCarbManifold);
 			exhaustHeader = new ExhaustHeader(cylinderHead);
-			//turboBigIntercoolerTube = new TurboBigIntercoolerTube(intercooler);
-			//turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
-			/*
+			
 			turboBig = new TurboBig(
 				this,
 				boostGauge,
-				turboBigBlowoffValve,
 				exhaustHeader,
 				boostSave
 			);
+			turboBigIntercoolerTube = new TurboBigIntercoolerTube(turboBig);
 			turboBigExhaustOutletTube = new TurboBigExhaustOutletTube(turboBig);
+			turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
 
+
+			/*
 			TurboLogicRequiredParts turboBigRequiredParts = new TurboLogicRequiredParts();
 			turboBigRequiredParts.Add(turboBig);
 			turboBigRequiredParts.Add(turboBigExhaustOutletTube);
@@ -171,7 +172,7 @@ namespace MwcTurbocharger
 			turboBigRequiredParts.Add(intercoolerManifoldTube);
 			turboBigRequiredParts.Add(intercooler);
 			turboBig.DefineRequiredParts(turboBigRequiredParts);
-
+			*/
 			turboBigKit = new Kit(
 				"Turbocharger Kit",
 				new Part[]
@@ -181,7 +182,7 @@ namespace MwcTurbocharger
 					turboBigExhaustOutletTube,
 				}
 			);
-			*/
+			
 			racingCarbManifoldKit = new Kit(
 				"Weber Kit",
 				new Part[]
@@ -206,8 +207,8 @@ namespace MwcTurbocharger
 
 			shop.Add(shopBaseInfo, shopLocation, new[]
 			{
-				//new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
-				//new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
+				new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
+				new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
 				new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit),
 				new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
 				new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),

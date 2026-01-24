@@ -22,9 +22,8 @@ namespace MwcTurbocharger.ModPart
 		protected override Vector3 partInstallPosition => new Vector3(-0.156245f, -0.08874601f, 0.0885f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
-		public TurboBig(MwcTurbocharger mod, BoostGauge boostGauge, TurboBigBlowoffValve turboBigBlowoffValve, Part parent, Dictionary<string, float> boostSave) : base(mod, boostGauge, parent, boostSave)
+		public TurboBig(MwcTurbocharger mod, BoostGauge boostGauge, Part parent, Dictionary<string, float> boostSave) : base(mod, boostGauge, parent, boostSave)
 		{
-			this.turboBigBlowoffValve = turboBigBlowoffValve;
 			AddClampModel(new Vector3(0.078f, -0.09f, -0.058f), new Vector3(-90, 0, 0),
 				new Vector3(0.85f, 0.85f, 0.85f));
 			AddScrew(new Screw(new Vector3(0.0540f, -0.09f, -0.091f), new Vector3(0, -90, 0),
