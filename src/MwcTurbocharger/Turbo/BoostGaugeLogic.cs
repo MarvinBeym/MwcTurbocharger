@@ -84,8 +84,8 @@ namespace MwcTurbocharger
 					if (lastElectricityState == true) { lastElectricityState = false; SwitchedElectricityOff(); };
 				});
 
-				GameObject airFuel = Cache.Find("AirFuel");
-				GameObject lcd = airFuel.transform.FindChild("LCD").gameObject;
+				/*
+				GameObject lcd = Cache.Find("CORRIS/AssembliesTuning/VINP_AFRgauge/Functions/LCD");
 				MeshRenderer lcdMeshRenderer = lcd.GetComponent<MeshRenderer>();
 				TextMesh lcdTextMesh = lcd.GetComponent<TextMesh>();
 
@@ -97,7 +97,7 @@ namespace MwcTurbocharger
 				digitalText.fontSize = 0;
 				digitalText.characterSize = 1.55f;
 				digitalText.transform.localScale = lcdTextMesh.transform.localScale;
-
+				*/
 				Color color = Color.white;
 				color.a = 0.2f;
 				foregroundMaterial.SetColor("_Color", color);
