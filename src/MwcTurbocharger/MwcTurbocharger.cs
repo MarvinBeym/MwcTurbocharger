@@ -126,7 +126,8 @@ namespace MwcTurbocharger
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
 
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
-			chromeHeaders = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)");
+			chromeHeadersA = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSa03");
+			chromeHeadersC = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSc02");
 			exhaustManifold = new GamePart("VINP_ExhaustManifold", "Exhaust Manifold(VINXX)");
 			exhausHeaders = new GamePart("VINP_ExhaustManifold", "Exhaust Headers(VINXX)");
 
