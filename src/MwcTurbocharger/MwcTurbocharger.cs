@@ -144,8 +144,7 @@ namespace MwcTurbocharger
 
 			//ModParts
 			racingCarbManifold = new RacingCarbManifold(racingCarb);
-			//boostGauge = new BoostGauge(dashboard);
-			//intercooler = new Intercooler();
+			boostGauge = new BoostGauge(dashboard);
 			intercooler = new Intercooler();
 			intercoolerRacingCarbManifoldTube = new IntercoolerRacingCarbManifoldTube(racingCarbManifold);
 			exhaustHeader = new ExhaustHeader(cylinderHead);
@@ -209,9 +208,8 @@ namespace MwcTurbocharger
 				//new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
 				//new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
 				new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit),
-				//new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
-				//new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),
 				new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
+				new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),
 				new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader),
 			});
 		}
