@@ -10,7 +10,7 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partName => "Racing Carb Manifold";
 		protected override string partId => "racingCarb-manifold";
-		protected override Vector3 partInstallPosition => new Vector3(0.140818f, -0.00382f, -0.078606f);
+		protected override Vector3 partInstallPosition => new Vector3(0.140818f, -0.00382f, -0.077606f);
 		protected override Vector3 partInstallRotation => new Vector3(90f, 0f, 0f);
 
 		public RacingCarbManifold(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)

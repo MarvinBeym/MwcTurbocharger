@@ -11,7 +11,7 @@ namespace MwcTurbocharger.ModPart
 	{
 		protected override string partId => "intercooler";
 		protected override string partName => "Intercooler";
-		protected override Vector3 partInstallPosition => new Vector3(0f, 0f, 0f);
+		protected override Vector3 partInstallPosition => new Vector3(0f, 0.213819f, 1.79515f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		public Intercooler() : base(CarGamePart.GetInstance(), MwcTurbocharger.partBaseInfo)
