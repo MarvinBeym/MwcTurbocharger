@@ -71,7 +71,8 @@ namespace MwcTurbocharger
 		private GamePart cylinderHead;
 
 		private GamePart ceramicHeaders;
-		private GamePart chromeHeaders;
+		private GamePart chromeHeadersA;
+		private GamePart chromeHeadersC;
 		private GamePart exhaustManifold;
 		private GamePart exhausHeaders;
 
@@ -218,7 +219,8 @@ namespace MwcTurbocharger
 		{
 			var gamePartExhaustHeaders = new[]
 			{
-				chromeHeaders,
+				chromeHeadersA,
+				chromeHeadersC,
 				exhausHeaders,
 				exhaustManifold,
 				ceramicHeaders
