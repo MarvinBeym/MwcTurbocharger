@@ -15,20 +15,16 @@ namespace MwcTurbocharger.ModPart
 
 		public RacingCarbManifold(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddClampModel(new Vector3(0.1275f, -0.0009f, -0.02f), new Vector3(0, 0, 0),
-				new Vector3(0.59f, 0.59f, 0.59f));
-			AddClampModel(new Vector3(0.051f, -0.0009f, -0.02f), new Vector3(0, 0, 0),
-				new Vector3(0.59f, 0.59f, 0.59f));
-			AddClampModel(new Vector3(-0.047f, -0.0009f, -0.02f), new Vector3(0, 0, 0),
-				new Vector3(0.59f, 0.59f, 0.59f));
-			AddClampModel(new Vector3(-0.1235f, -0.0009f, -0.02f), new Vector3(0, 0, 0),
-				new Vector3(0.59f, 0.59f, 0.59f));
+			AddClampModel(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 0.59f);
+			AddClampModel(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 0.59f);
+			AddClampModel(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 0.59f);
+			AddClampModel(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 0.59f);
 			AddScrews(new[]
 			{
-				new Screw(new Vector3(-0.1006f, 0.0219f, -0.0200f), new Vector3(0, 90, 0)),
-				new Screw(new Vector3(-0.0240f, 0.0219f, -0.0200f), new Vector3(0, 90, 0)),
-				new Screw(new Vector3(0.0740f, 0.0219f, -0.0200f), new Vector3(0, 90, 0)),
-				new Screw(new Vector3(0.1504f, 0.0219f, -0.0200f), new Vector3(0, 90, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
 			}, 0.35f, 6);
 		}
 

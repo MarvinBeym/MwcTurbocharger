@@ -14,11 +14,12 @@ namespace MwcTurbocharger.ModPart
 		{ 
 			AddScrews(new[]
 			{
-				new Screw(new Vector3(0f, 0.206f, -0.0420f), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(-0.042f, 0.164f, -0.0420f), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(0f, 0.122f, -0.0420f), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(0.041f, 0.164f, -0.0420f), new Vector3(0, 0, 0)),
-			}, 0.6f, 8);
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+			}, 0.6f, 10);
 		}
 	}
 }

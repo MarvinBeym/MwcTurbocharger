@@ -24,23 +24,23 @@ namespace MwcTurbocharger.ModPart
 
 		public TurboBig(MwcTurbocharger mod, BoostGauge boostGauge, Part parent, Dictionary<string, float> boostSave) : base(mod, boostGauge, parent, boostSave)
 		{
-			AddClampModel(new Vector3(0.078f, -0.09f, -0.058f), new Vector3(-90, 0, 0),
-				new Vector3(0.85f, 0.85f, 0.85f));
-			AddScrew(new Screw(new Vector3(0.0540f, -0.09f, -0.091f), new Vector3(0, -90, 0),
-				Screw.Type.Normal, 0.5f));
+			AddScrews(new [] { 
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+			}, 0.5f);
 
 			//PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
 
-			GameObject boostChangingGameObject = turboBigBlowoffValve.gameObject.transform
-				.FindChild("turboBig-blowoff-valve-main").gameObject;
+			//GameObject boostChangingGameObject = turboBigBlowoffValve.gameObject.transform
+			//	.FindChild("turboBig-blowoff-valve-main").gameObject;
 
 			//Fixing collider too small on model
-			boostChangingGameObject.GetComponent<BoxCollider>().size = new Vector3(0.09f, 0.09f, 0.09f);
+			//boostChangingGameObject.GetComponent<BoxCollider>().size = new Vector3(0.09f, 0.09f, 0.09f);
 
-			DefineBoostChangingGameObject(
-				boostChangingGameObject
-				);
-			DefineSpinningTurbineGameObject(gameObject.transform.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
+			//DefineBoostChangingGameObject(boostChangingGameObject);
+			//DefineSpinningTurbineGameObject(gameObject.transform.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
 
 			audioHandler.Add("turboLoop", this, "turbocharger_loop.wav", PartEvent.Type.InstallOnCar, true);
 			audioHandler.Add("grinding", this, "grinding sound.wav", PartEvent.Type.InstallOnCar, true);
