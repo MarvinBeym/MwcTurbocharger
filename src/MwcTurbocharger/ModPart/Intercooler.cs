@@ -18,8 +18,8 @@ namespace MwcTurbocharger.ModPart
 		{
 			AddScrews(new[]
 			{
-				new Screw(new Vector3(-0.2210f, 0.081f, 0.0260f), new Vector3(180, 0, 0)),
-				new Screw(new Vector3(0.2390f, 0.081f, 0.0260f), new Vector3(180, 0, 0)),
+				new Screw(new Vector3(-0.238f, 0.15f, -0.025f), new Vector3(0, 90, 0)),
+				new Screw(new Vector3(0.238f, 0.15f, -0.025f), new Vector3(0, -90, 0)),
 			}, 0.6f, 8);
 			
 			//PaintingSystem
