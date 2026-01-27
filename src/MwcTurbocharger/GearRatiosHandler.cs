@@ -62,7 +62,6 @@ namespace MwcTurbocharger
 			);
 			Settings.AddText("Reapply by other mods may be required after setting this to 'IGNORE'");
 
-
 			string gearRatioHelpText = "New Gear Ratios: \n";
 			for (int i = 0; i < newGearRatios.Length; i++) {
 				string gearName = i.ToString();

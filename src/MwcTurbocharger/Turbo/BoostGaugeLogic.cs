@@ -33,7 +33,6 @@ namespace MwcTurbocharger
 			Color.magenta,
 		};
 
-
 		private Material foregroundMaterial;
 
 		public GaugeMode gaugeMode = GaugeMode.Analog;
@@ -161,7 +160,6 @@ namespace MwcTurbocharger
 			selectedColor = newColorIndex;
 			Color color = availableColors[newColorIndex];
 			color.a = 0.6f;
-
 
 			foregroundMaterial.SetColor("_Color", color);
 		}

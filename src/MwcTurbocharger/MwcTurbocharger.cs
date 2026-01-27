@@ -36,7 +36,6 @@ namespace MwcTurbocharger
 		public GuiDebug guiDebug;
 		public Dictionary<string, float> boostSave;
 
-
 		//Mod Settings
 		public static SettingsCheckBox debugGuiSetting;
 		public static SettingsCheckBox rotateTurbineSetting;
@@ -81,7 +80,6 @@ namespace MwcTurbocharger
 		private Kit turboBigKit;
 		private Kit racingCarbManifoldKit;
 
-
 		public override void ModSetup()
 		{
 			SetupFunction(Setup.OnNewGame, OnNewGame);
@@ -108,7 +106,6 @@ namespace MwcTurbocharger
 			Logger.InitLogger(this);
 
 			ecuModInstalled = ModLoader.IsModPresent("DonnerTech_ECU_Mod");
-
 
 			guiDebug = new GuiDebug(
 				Screen.width - 310, 50, 300, "TURBO MOD DEBUG", new[]
@@ -160,7 +157,6 @@ namespace MwcTurbocharger
 			turboBigExhaustOutletTube = new TurboBigExhaustOutletTube(turboBig);
 			turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
 
-
 			/*
 			TurboLogicRequiredParts turboBigRequiredParts = new TurboLogicRequiredParts();
 			turboBigRequiredParts.Add(turboBig);
@@ -191,7 +187,6 @@ namespace MwcTurbocharger
 					intercoolerRacingCarbManifoldTube
 				}
 			);
-
 
 			SetupShopItems();
 			SetupPartInstallBlocking();
@@ -257,7 +252,6 @@ namespace MwcTurbocharger
 			backfireVolumeSetting =
 				Settings.AddSlider("backfireVolumeSetting ", "Backfire Sound Volume", 0, 200, 100);
 
-
 			TransmissionHandler.SetupSettings(this);
 			GearRatiosHandler.SetupSettings(this);
 
@@ -297,7 +291,6 @@ namespace MwcTurbocharger
 		{
 			//ToDo: implement for MWC
 		}
-
 
 		private void PosReset()
 		{

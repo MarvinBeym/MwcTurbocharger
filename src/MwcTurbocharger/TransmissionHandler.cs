@@ -78,7 +78,6 @@ namespace MwcTurbocharger
 			return TransmissionType.FWD;
 		}
 
-
 		public static void Handle()
 		{
 			string transmissionToSet = availableOptions[changeTransmission.GetSelectedItemIndex()];

@@ -10,7 +10,6 @@ using UnityEngine;
 using Random = System.Random;
 using MwcTurbocharger.ModPart;
 
-
 namespace MwcTurbocharger.Turbo
 {
 	public class TurboLogic : MonoBehaviour
@@ -101,7 +100,6 @@ namespace MwcTurbocharger.Turbo
 						}
 					);
 
-
 					boostMaxConfigured = config.boostBase + newCalculatedIncrease;
 				}
 			);
@@ -146,7 +144,6 @@ namespace MwcTurbocharger.Turbo
 				boostGauge.SetBoost(config.boostMin, 0, config);
 				return;
 			}
-
 
 			float boostBeforeRelease = 0;
 

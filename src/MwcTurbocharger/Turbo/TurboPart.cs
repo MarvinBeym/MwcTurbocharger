@@ -11,7 +11,6 @@ using MwcTurbocharger.ModPart;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
 
-
 namespace MwcTurbocharger.Turbo
 {
 	public abstract class TurboPart : DerivablePart

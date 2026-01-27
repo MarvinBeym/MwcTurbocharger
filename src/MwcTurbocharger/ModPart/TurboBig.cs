@@ -10,7 +10,6 @@ using MwcModApi.Tools;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
 
-
 namespace MwcTurbocharger.ModPart
 {
 	public class TurboBig : TurboPart
@@ -54,7 +53,6 @@ namespace MwcTurbocharger.ModPart
 			audioHandler.Add("grinding", this, "grinding sound.wav", PartEvent.Type.InstallOnCar, true);
 			audioHandler.Add("blowoff", this, "turbocharger_blowoff.wav", PartEvent.Type.InstallOnCar);
 		}
-
 
 		protected override TurboConfiguration SetupTurboConfig()
 		{

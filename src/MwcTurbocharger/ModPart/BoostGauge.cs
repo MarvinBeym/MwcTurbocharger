@@ -5,7 +5,6 @@ using MwcModApi.Parts.Game;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
 
-
 namespace MwcTurbocharger.ModPart
 {
 	public class BoostGauge : DerivablePart
@@ -26,7 +25,6 @@ namespace MwcTurbocharger.ModPart
 			logic = AddEventBehaviour<BoostGaugeLogic>(PartEvent.Type.InstallOnCar);
 			logic.Init(this);
 		}
-
 
 		public void SetBoost(float boostGaugeTarget, float boostBeforeRelease, TurboConfiguration config)
 		{
