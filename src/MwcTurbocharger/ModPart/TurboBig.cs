@@ -22,14 +22,22 @@ namespace MwcTurbocharger.ModPart
 		protected override Vector3 partInstallPosition => new Vector3(-0.156245f, -0.08874601f, 0.0885f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
-		public TurboBig(MwcTurbocharger mod, BoostGauge boostGauge, Part parent, Dictionary<string, float> boostSave) : base(mod, boostGauge, parent, boostSave)
+		public TurboBig(
+			MwcTurbocharger mod,
+			BoostGauge boostGauge,
+			Part parent,
+			Dictionary<string, float> boostSave
+		) : base(mod, boostGauge, parent, boostSave)
 		{
-			AddScrews(new [] { 
-				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-				new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-			}, 0.5f);
+			AddScrews(
+				new[]
+				{
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
+				}, 0.5f
+			);
 
 			//PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
 
@@ -75,9 +83,12 @@ namespace MwcTurbocharger.ModPart
 		protected override TurboConditionStorage SetupTurboConditions()
 		{
 			TurboConditionStorage turboConditionStorage = new TurboConditionStorage();
-			turboConditionStorage.AddConditions(new Condition[]
-			{
-				new Condition("racingCarb", 0.5f)});
+			turboConditionStorage.AddConditions(
+				new Condition[]
+				{
+					new Condition("racingCarb", 0.5f)
+				}
+			);
 			return turboConditionStorage;
 		}
 	}

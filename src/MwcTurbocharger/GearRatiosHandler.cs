@@ -13,7 +13,8 @@ namespace MwcTurbocharger
 			ORIGINAL,
 		}
 
-		private static float[] originalGearRatios = {
+		private static float[] originalGearRatios =
+		{
 			-4.093f,
 			0f,
 			3.673f,
@@ -22,7 +23,8 @@ namespace MwcTurbocharger
 			1f,
 		};
 
-		private static float[] newGearRatios = {
+		private static float[] newGearRatios =
+		{
 			-4.093f, // reverse
 			0f, // neutral
 			3.4f, // 1st
@@ -34,7 +36,9 @@ namespace MwcTurbocharger
 		};
 
 		private static SettingsDropDownList changeGearRatios;
-		private static string[] availableOptions = {
+
+		private static string[] availableOptions =
+		{
 			GearRatioType.IGNORE.ToString(),
 			GearRatioType.APPLY.ToString(),
 			GearRatioType.ORIGINAL.ToString()
@@ -42,36 +46,34 @@ namespace MwcTurbocharger
 
 		public static void SetupSettings(Mod mod)
 		{
-
-			if (changeGearRatios != null)
-			{
+			if (changeGearRatios != null) {
 				return;
 			}
 
 			Settings.AddHeader("Change Car Transmission type", Color.clear);
-			changeGearRatios = Settings.AddDropDownList("changeGearRatios", "Change Car Gear ratios (IGNORE = disabled logic, allowing other mods to change)", availableOptions, 0, () =>
-			{
-				if (changeGearRatios != null)
+			changeGearRatios = Settings.AddDropDownList(
+				"changeGearRatios", "Change Car Gear ratios (IGNORE = disabled logic, allowing other mods to change)",
+				availableOptions, 0, () =>
 				{
-					Set(StringToEnum(availableOptions[changeGearRatios.GetSelectedItemIndex()]));
+					if (changeGearRatios != null) {
+						Set(StringToEnum(availableOptions[changeGearRatios.GetSelectedItemIndex()]));
+					}
 				}
-			});
+			);
 			Settings.AddText("Reapply by other mods may be required after setting this to 'IGNORE'");
 
 
 			string gearRatioHelpText = "New Gear Ratios: \n";
-			for (int i = 0; i < newGearRatios.Length; i++)
-			{
+			for (int i = 0; i < newGearRatios.Length; i++) {
 				string gearName = i.ToString();
-				if (i == 0)
-				{
+				if (i == 0) {
 					gearName = "R";
 				}
 
-				if (i == 1)
-				{
+				if (i == 1) {
 					gearName = "N";
 				}
+
 				gearRatioHelpText += $"{gearName}.Gear: {newGearRatios[i]}\n";
 			}
 
@@ -80,8 +82,7 @@ namespace MwcTurbocharger
 
 		private static void Set(GearRatioType gearRatioType)
 		{
-			switch (gearRatioType)
-			{
+			switch (gearRatioType) {
 				case GearRatioType.APPLY:
 					CarH.drivetrain.gearRatios = newGearRatios;
 					break;
@@ -93,13 +94,11 @@ namespace MwcTurbocharger
 
 		private static GearRatioType StringToEnum(string value)
 		{
-			if (value == GearRatioType.APPLY.ToString())
-			{
+			if (value == GearRatioType.APPLY.ToString()) {
 				return GearRatioType.APPLY;
 			}
 
-			if (value == GearRatioType.ORIGINAL.ToString())
-			{
+			if (value == GearRatioType.ORIGINAL.ToString()) {
 				return GearRatioType.ORIGINAL;
 			}
 
@@ -109,10 +108,10 @@ namespace MwcTurbocharger
 		public static void Handle()
 		{
 			string gearRatiosToSet = availableOptions[changeGearRatios.GetSelectedItemIndex()];
-			if (gearRatiosToSet == GearRatioType.IGNORE.ToString())
-			{
+			if (gearRatiosToSet == GearRatioType.IGNORE.ToString()) {
 				return;
 			}
+
 			Set(StringToEnum(gearRatiosToSet));
 		}
 	}

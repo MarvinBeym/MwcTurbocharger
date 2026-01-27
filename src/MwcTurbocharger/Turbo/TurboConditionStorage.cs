@@ -12,20 +12,16 @@ namespace MwcTurbocharger.Turbo
 
 		public TurboConditionStorage()
 		{
-
 		}
 
 		public void DefineConditionsHaveUpdatedAction(Action action)
 		{
-			if (conditionsHaveUpdatedAction != null)
-			{
+			if (conditionsHaveUpdatedAction != null) {
 				return;
 			}
 
 			conditionsHaveUpdatedAction = action;
 			conditionsHaveUpdatedAction.Invoke();
-
-
 		}
 
 		public void AddCondition(Condition condition)
@@ -35,8 +31,7 @@ namespace MwcTurbocharger.Turbo
 
 		public void AddConditions(IEnumerable<Condition> conditions)
 		{
-			foreach (Condition condition in conditions)
-			{
+			foreach (Condition condition in conditions) {
 				AddCondition(condition);
 			}
 		}
@@ -54,13 +49,11 @@ namespace MwcTurbocharger.Turbo
 		public void UpdateCondition(string conditionId, bool applyCondition)
 		{
 			Condition condition = GetCondition(conditionId);
-			if (condition == null)
-			{
+			if (condition == null) {
 				return;
 			}
 
-			if (condition.applyCondition == applyCondition)
-			{
+			if (condition.applyCondition == applyCondition) {
 				return;
 			}
 

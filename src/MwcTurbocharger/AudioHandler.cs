@@ -11,7 +11,6 @@ namespace MwcTurbocharger
 {
 	public class AudioHandler
 	{
-
 		protected Dictionary<string, AudioSource> noiseStorage = new Dictionary<string, AudioSource>();
 
 		protected readonly Mod mod;
@@ -26,13 +25,11 @@ namespace MwcTurbocharger
 			audioSource.playOnAwake = false;
 			audioSource.Stop();
 			noiseStorage.Add(id, audioSource);
-
 		}
 
 		public void SetVolume(AudioSource audioSource, float volume)
 		{
-			if (audioSource == null)
-			{
+			if (audioSource == null) {
 				return;
 			}
 
@@ -46,8 +43,7 @@ namespace MwcTurbocharger
 
 		public void SetPitch(AudioSource audioSource, float pitch)
 		{
-			if (audioSource == null)
-			{
+			if (audioSource == null) {
 				return;
 			}
 
@@ -59,10 +55,15 @@ namespace MwcTurbocharger
 			SetPitch(Get(id), pitch);
 		}
 
-		public void Add(string id, MwcModApi.Parts.Part part, string fileName, PartEvent.Type eventTypeWhenActive, bool loop = false)
+		public void Add(
+			string id,
+			MwcModApi.Parts.Part part,
+			string fileName,
+			PartEvent.Type eventTypeWhenActive,
+			bool loop = false
+		)
 		{
-			if (fileName == "")
-			{
+			if (fileName == "") {
 				Logger.Error("No fileName given for loading audio");
 				return;
 			}
@@ -87,13 +88,11 @@ namespace MwcTurbocharger
 
 		public void Play(AudioSource audioSource)
 		{
-			if (audioSource == null)
-			{
+			if (audioSource == null) {
 				return;
 			}
 
-			if (audioSource.isPlaying)
-			{
+			if (audioSource.isPlaying) {
 				return;
 			}
 
@@ -112,13 +111,11 @@ namespace MwcTurbocharger
 
 		protected void Stop(AudioSource audioSource)
 		{
-			if (audioSource == null)
-			{
+			if (audioSource == null) {
 				return;
 			}
 
-			if (!audioSource.isPlaying)
-			{
+			if (!audioSource.isPlaying) {
 				return;
 			}
 
@@ -127,8 +124,7 @@ namespace MwcTurbocharger
 
 		public void StopAll()
 		{
-			foreach (var keyValue in noiseStorage)
-			{
+			foreach (var keyValue in noiseStorage) {
 				Stop(keyValue.Value);
 			}
 		}

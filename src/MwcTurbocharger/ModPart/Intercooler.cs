@@ -16,18 +16,17 @@ namespace MwcTurbocharger.ModPart
 
 		public Intercooler() : base(CarGamePart.GetInstance(), MwcTurbocharger.partBaseInfo)
 		{
-			AddScrews(new[]
-			{
-				new Screw(new Vector3(-0.238f, 0.15f, -0.025f), new Vector3(0, 90, 0)),
-				new Screw(new Vector3(0.238f, 0.15f, -0.025f), new Vector3(0, -90, 0)),
-			}, 0.6f, 8);
-			
+			AddScrews(
+				new[]
+				{
+					new Screw(new Vector3(-0.238f, 0.15f, -0.025f), new Vector3(0, 90, 0)),
+					new Screw(new Vector3(0.238f, 0.15f, -0.025f), new Vector3(0, -90, 0)),
+				}, 0.6f, 8
+			);
+
 			//PaintingSystem
 			//	.Setup(partBaseInfo.mod, this, gameObject.FindChild("intercooler-main"))
 			//	.SetMetallic(0.8f, 0.5f);
 		}
-
-		
-		
 	}
 }

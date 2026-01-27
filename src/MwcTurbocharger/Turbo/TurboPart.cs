@@ -31,17 +31,20 @@ namespace MwcTurbocharger.Turbo
 		public GameObject boostChangingGameObject;
 		protected static GameObject backfireFxModel;
 
-		protected TurboPart(MwcTurbocharger mod, BoostGauge boostGauge, MwcModApi.Parts.Part parent, Dictionary<string, float> boostSave) : base(parent, MwcTurbocharger.partBaseInfo)
+		protected TurboPart(
+			MwcTurbocharger mod,
+			BoostGauge boostGauge,
+			MwcModApi.Parts.Part parent,
+			Dictionary<string, float> boostSave
+		) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
 			audioHandler = new AudioHandler(mod);
 			this.boostGauge = boostGauge;
 			CarH.drivetrain.clutchTorqueMultiplier = 10f;
 			config = SetupTurboConfig();
 			conditionStorage = SetupTurboConditions();
-			foreach (var playMakerFloatVar in PlayMakerGlobals.Instance.Variables.FloatVariables)
-			{
-				switch (playMakerFloatVar.Name)
-				{
+			foreach (var playMakerFloatVar in PlayMakerGlobals.Instance.Variables.FloatVariables) {
+				switch (playMakerFloatVar.Name) {
 					case "EnginePowerMultiplier":
 					{
 						powerMultiplier = playMakerFloatVar;
@@ -53,8 +56,8 @@ namespace MwcTurbocharger.Turbo
 			logic = AddEventBehaviour<TurboLogic>(PartEvent.Type.InstallOnCar);
 			logic.Init(
 				audioHandler,
-				boostGauge, 
-				this, 
+				boostGauge,
+				this,
 				conditionStorage,
 				boostSave.TryGetValue(id, out var value) ? value : config.boostBase,
 				fsmPartData.AddFsmVariable("setBoost", 0f),
@@ -67,8 +70,7 @@ namespace MwcTurbocharger.Turbo
 
 		public void DefineBoostChangingGameObject(GameObject boostChangingGameObject)
 		{
-			if (this.boostChangingGameObject != null)
-			{
+			if (this.boostChangingGameObject != null) {
 				return;
 			}
 
@@ -77,8 +79,7 @@ namespace MwcTurbocharger.Turbo
 
 		public void DefineBackfire(MwcModApi.Parts.Part backfirePart, AudioSource backfireAudioSource)
 		{
-			if (logic.backFireLogic != null)
-			{
+			if (logic.backFireLogic != null) {
 				return;
 			}
 
@@ -91,10 +92,10 @@ namespace MwcTurbocharger.Turbo
 
 		public void DefineSpinningTurbineGameObject(GameObject gameObject)
 		{
-			if (logic.spinningTurbineGameObject != null)
-			{
+			if (logic.spinningTurbineGameObject != null) {
 				return;
 			}
+
 			logic.spinningTurbineGameObject = gameObject;
 		}
 
@@ -106,36 +107,33 @@ namespace MwcTurbocharger.Turbo
 
 		public void DefineRequiredParts(TurboLogicRequiredParts requiredParts)
 		{
-			if (this.requiredParts != null)
-			{
+			if (this.requiredParts != null) {
 				return;
 			}
+
 			this.requiredParts = requiredParts;
 		}
 
 		public static void Save(MwcTurbocharger mod, string saveFile, TurboPart[] turbos)
 		{
-			try
-			{
+			try {
 				Dictionary<string, float> save = new Dictionary<string, float>();
-				foreach (TurboPart turbo in turbos)
-				{
+				foreach (TurboPart turbo in turbos) {
 					save[turbo.id] = turbo.setBoost;
 				}
+
 				SaveLoad.SerializeSaveFile<Dictionary<string, float>>(mod, save, saveFile);
-			}
-			catch (Exception ex)
-			{
+			} catch (Exception ex) {
 				Logger.Error("Error while trying to save configured boost information", ex);
 			}
 		}
 
 		public static void LoadAssets(AssetBundle assetBundle)
 		{
-			if (backfireFxModel != null)
-			{
+			if (backfireFxModel != null) {
 				return;
 			}
+
 			backfireFxModel = assetBundle.LoadAsset<GameObject>("fx_fire.prefab");
 		}
 	}

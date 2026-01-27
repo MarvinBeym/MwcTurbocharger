@@ -37,7 +37,6 @@ namespace MwcTurbocharger
 		public Dictionary<string, float> boostSave;
 
 
-
 		//Mod Settings
 		public static SettingsCheckBox debugGuiSetting;
 		public static SettingsCheckBox rotateTurbineSetting;
@@ -50,6 +49,7 @@ namespace MwcTurbocharger
 		internal static List<Part> partsList = new List<Part>();
 
 		public AssetBundle assetsBundle;
+
 		//ECU-Mod Communication
 		private bool ecuModInstalled = false;
 
@@ -85,12 +85,14 @@ namespace MwcTurbocharger
 		public override void ModSetup()
 		{
 			SetupFunction(Setup.OnNewGame, OnNewGame);
-			SetupFunction(Setup.OnLoad, () =>
-			{
-				ModConsole.Print($"{Name} [v{Version} started loading");
-				OnLoad();
-				ModConsole.Print($"{Name} [v{Version} finished loading");
-			});
+			SetupFunction(
+				Setup.OnLoad, () =>
+				{
+					ModConsole.Print($"{Name} [v{Version} started loading");
+					OnLoad();
+					ModConsole.Print($"{Name} [v{Version} finished loading");
+				}
+			);
 			SetupFunction(Setup.ModSettings, ModSettings);
 			SetupFunction(Setup.Update, Update);
 		}
@@ -103,16 +105,17 @@ namespace MwcTurbocharger
 
 		public void OnLoad()
 		{
-			
 			Logger.InitLogger(this);
 
 			ecuModInstalled = ModLoader.IsModPresent("DonnerTech_ECU_Mod");
 
 
-			guiDebug = new GuiDebug(Screen.width - 310, 50, 300, "TURBO MOD DEBUG", new[]
-			{
-				new GuiDebugElement("DEBUG")
-			});
+			guiDebug = new GuiDebug(
+				Screen.width - 310, 50, 300, "TURBO MOD DEBUG", new[]
+				{
+					new GuiDebugElement("DEBUG")
+				}
+			);
 
 			assetsBundle = Helper.LoadAssetBundle(this, "turbocharger.unity3d");
 			TurboPart.LoadAssets(assetsBundle);
@@ -123,7 +126,7 @@ namespace MwcTurbocharger
 			carb = new GamePart("VINP_Carburettor", "Carburettor(VINXX)");
 			twoBarrelCarb = new GamePart("VINP_Carburettor", "2 Barrel Carb(VINXX)");
 			racingCarb = new GamePart("VINP_Carburettor", "4 Barrell Racing Carb(VINXX)");
-			
+
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
 
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
@@ -134,12 +137,9 @@ namespace MwcTurbocharger
 
 			dashboard = new GamePart("VINP_Dashboard", "Dashboard(VINXX)");
 
-			try
-			{
+			try {
 				boostSave = Helper.LoadSaveOrReturnNew<Dictionary<string, float>>(this, boostSaveFile);
-			}
-			catch (Exception ex)
-			{
+			} catch (Exception ex) {
 				Logger.Error("Error while trying to deserialize save file", "Please check paths to save files", ex);
 			}
 
@@ -149,7 +149,7 @@ namespace MwcTurbocharger
 			intercooler = new Intercooler();
 			intercoolerRacingCarbManifoldTube = new IntercoolerRacingCarbManifoldTube(racingCarbManifold);
 			exhaustHeader = new ExhaustHeader(cylinderHead);
-			
+
 			turboBig = new TurboBig(
 				this,
 				boostGauge,
@@ -182,15 +182,16 @@ namespace MwcTurbocharger
 					turboBigExhaustOutletTube,
 				}
 			);
-			
+
 			racingCarbManifoldKit = new Kit(
 				"Weber Kit",
 				new Part[]
 				{
 					racingCarbManifold,
 					intercoolerRacingCarbManifoldTube
-				});
-			
+				}
+			);
+
 
 			SetupShopItems();
 			SetupPartInstallBlocking();
@@ -205,17 +206,19 @@ namespace MwcTurbocharger
 			Shop shop = Shop.GetInstance();
 			ShopLocation shopLocation = shop.GetShopLocation(ShopLocationOption.Fleetari);
 
-			shop.Add(shopBaseInfo, shopLocation, new[]
-			{
-				new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
-				new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
-				new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit),
-				new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
-				new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),
-				new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader),
-			});
+			shop.Add(
+				shopBaseInfo, shopLocation, new[]
+				{
+					new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit),
+					new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve),
+					new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit),
+					new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler),
+					new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge),
+					new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader),
+				}
+			);
 		}
-		
+
 		public void SetupPartInstallBlocking()
 		{
 			var gamePartExhaustHeaders = new[]
@@ -228,8 +231,7 @@ namespace MwcTurbocharger
 			};
 			exhaustHeader.BlockOtherPartInstallOnEvent(PartEvent.Type.Install, gamePartExhaustHeaders);
 
-			foreach (var gamePart in gamePartExhaustHeaders)
-			{
+			foreach (var gamePart in gamePartExhaustHeaders) {
 				gamePart.BlockOtherPartInstallOnEvent(PartEvent.Type.Install, exhaustHeader);
 			}
 
@@ -280,7 +282,7 @@ namespace MwcTurbocharger
 			backfireDelay = Settings.AddSlider(this, "backfireDelaySetting", "Delay between a backfire trigger", 0.001f, 0.5f, 0.1f, null, 4);
 			*/
 
-			Settings.AddText( "Copyright © Marvin Beym 2020-2024");
+			Settings.AddText("Copyright © Marvin Beym 2020-2024");
 		}
 
 		public void Update()
@@ -299,16 +301,13 @@ namespace MwcTurbocharger
 
 		private void PosReset()
 		{
-			try
-			{
+			try {
 				//manifoldTwinCarb_kit.ResetToDefault();
 				//Manifold_kit.ResetToDefault();
 				//turboBig_kit.ResetToDefault();
 				//turboSmall_kit.ResetToDefault();
-				partsList.ForEach(delegate (Part part) { part.ResetToDefault(); });
-			}
-			catch (Exception ex)
-			{
+				partsList.ForEach(delegate(Part part) { part.ResetToDefault(); });
+			} catch (Exception ex) {
 				Logger.Warning("Resetting positions failed", ex);
 			}
 		}

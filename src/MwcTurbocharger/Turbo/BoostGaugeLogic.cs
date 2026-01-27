@@ -2,7 +2,6 @@
 using MwcModApi.Caching;
 using MwcModApi.Parts;
 using MwcModApi.Tools;
-
 using System;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
@@ -23,6 +22,7 @@ namespace MwcTurbocharger
 		private TextMesh digitalText;
 		private Animation analogNeedleAnimation;
 		private int selectedColor = 0;
+
 		private Color[] availableColors = new Color[]
 		{
 			Color.white,
@@ -58,31 +58,44 @@ namespace MwcTurbocharger
 
 			analogNeedle = this.transform.FindChild("boost-gauge-needle").gameObject;
 			analogNeedleAnimation = analogNeedle.GetComponent<Animation>();
-			foreach (Material material in this.transform.FindChild("boost-gauge-main").GetComponent<Renderer>().materials)
-			{
-				if (!material.name.Contains("boost-gauge-foreground"))
-				{
+			foreach (Material material in this.transform.FindChild("boost-gauge-main").GetComponent<Renderer>()
+				         .materials) {
+				if (!material.name.Contains("boost-gauge-foreground")) {
 					continue;
 				}
+
 				foregroundMaterial = material;
 				break;
-
 			}
+
 			foregroundMaterial.SetColor("_Color", availableColors[selectedColor]);
 
-			try
-			{
+			try {
 				MeshRenderer meshRenderer = digitalTextObject.GetComponent<MeshRenderer>();
 				digitalText = digitalTextObject.GetComponent<TextMesh>();
 
-				CarH.electricity.FsmInject("Power", "ON", delegate ()
-				{
-					if (lastElectricityState == false) { lastElectricityState = true; SwitchedElectricityOn(); };
-				});
-				CarH.electricity.FsmInject("Power", "OFF", delegate ()
-				{
-					if (lastElectricityState == true) { lastElectricityState = false; SwitchedElectricityOff(); };
-				});
+				CarH.electricity.FsmInject(
+					"Power", "ON", delegate()
+					{
+						if (lastElectricityState == false) {
+							lastElectricityState = true;
+							SwitchedElectricityOn();
+						}
+
+						;
+					}
+				);
+				CarH.electricity.FsmInject(
+					"Power", "OFF", delegate()
+					{
+						if (lastElectricityState == true) {
+							lastElectricityState = false;
+							SwitchedElectricityOff();
+						}
+
+						;
+					}
+				);
 
 				/*
 				GameObject lcd = Cache.Find("CORRIS/AssembliesTuning/VINP_AFRgauge/Functions/LCD");
@@ -101,12 +114,9 @@ namespace MwcTurbocharger
 				Color color = Color.white;
 				color.a = 0.2f;
 				foregroundMaterial.SetColor("_Color", color);
-			}
-			catch (Exception ex)
-			{
+			} catch (Exception ex) {
 				Logger.Warning("Setup of boost gauge digital display failed", ex);
 			}
-
 		}
 
 		void Start()
@@ -117,8 +127,7 @@ namespace MwcTurbocharger
 
 		void Update()
 		{
-			if (!CarH.hasPower || !analogDigitalSwitch.IsLookingAt())
-			{
+			if (!CarH.hasPower || !analogDigitalSwitch.IsLookingAt()) {
 				return;
 			}
 
@@ -130,20 +139,17 @@ namespace MwcTurbocharger
 				)
 			);
 
-			if (UserInteraction.MouseScrollWheel.Up)
-			{
+			if (UserInteraction.MouseScrollWheel.Up) {
 				selectedColor += 1;
 				ChangeTextColor(selectedColor);
 			}
 
-			if (UserInteraction.MouseScrollWheel.Down)
-			{
+			if (UserInteraction.MouseScrollWheel.Down) {
 				selectedColor -= 1;
 				ChangeTextColor(selectedColor);
 			}
 
-			if (UserInteraction.UseButtonDown || UserInteraction.LeftMouseDown)
-			{
+			if (UserInteraction.UseButtonDown || UserInteraction.LeftMouseDown) {
 				SwitchGaugeMode(nextGaugeMode);
 			}
 		}
@@ -162,22 +168,21 @@ namespace MwcTurbocharger
 
 		private void SwitchedElectricityOn()
 		{
-			if (gaugeMode == GaugeMode.Analog)
-			{
+			if (gaugeMode == GaugeMode.Analog) {
 				analogNeedleAnimation.Play();
-			}
-			else
-			{
+			} else {
 				digitalText.text = "0.00";
 			}
+
 			ChangeTextColor(selectedColor);
 		}
+
 		private void SwitchedElectricityOff()
 		{
-			if (analogNeedleAnimation.isPlaying)
-			{
+			if (analogNeedleAnimation.isPlaying) {
 				analogNeedleAnimation.Stop();
 			}
+
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 			digitalText.text = "";
 
@@ -190,8 +195,7 @@ namespace MwcTurbocharger
 		{
 			UserInteraction.PlayTouch(boostGauge.gameObject);
 			gaugeMode = newGaugeMode;
-			switch (gaugeMode)
-			{
+			switch (gaugeMode) {
 				case GaugeMode.Analog:
 					digitalText.text = "";
 					break;
@@ -204,15 +208,15 @@ namespace MwcTurbocharger
 
 		public void SetBoost(float target, float boost, TurboConfiguration turboConfig)
 		{
-			if (!CarH.hasPower || analogNeedleAnimation.isPlaying) { return; }
+			if (!CarH.hasPower || analogNeedleAnimation.isPlaying) {
+				return;
+			}
 
-			if (digitalText.text == "ERR")
-			{
+			if (digitalText.text == "ERR") {
 				digitalText.text = "";
 			}
 
-			switch (gaugeMode)
-			{
+			switch (gaugeMode) {
 				case GaugeMode.Analog:
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, GetNeedleAngle(boost));
 					break;

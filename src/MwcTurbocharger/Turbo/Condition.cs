@@ -3,15 +3,16 @@ using UnityEngine;
 
 namespace MwcTurbocharger.Turbo
 {
-    public class Condition
-    {
-        public string id = "conditionDefaultID";
-        public bool applyCondition = false;
-        public float valueToApply = 0;
-        public Condition(string id, float valueToApply)
-        {
-            this.id = id;
-            this.valueToApply = valueToApply;
-        }
-    }
+	public class Condition
+	{
+		public string id = "conditionDefaultID";
+		public bool applyCondition = false;
+		public float valueToApply = 0;
+
+		public Condition(string id, float valueToApply)
+		{
+			this.id = id;
+			this.valueToApply = valueToApply;
+		}
+	}
 }

@@ -11,7 +11,7 @@ namespace MwcTurbocharger.ModPart
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
 
 		public TurboBigIntercoolerTube(TurboBig parent) : base(parent, MwcTurbocharger.partBaseInfo)
-		{ 
+		{
 			AddClampModel(new Vector3(0.12f, -0.031f, -0.239f), new Vector3(0, 90, 0), 0.5f, 10);
 		}
 	}

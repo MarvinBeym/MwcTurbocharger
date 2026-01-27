@@ -17,16 +17,13 @@ namespace MwcTurbocharger.ModPart
 			get
 			{
 				int partCount = 0;
-				foreach (KeyValuePair<Part, Part> keyValue in requiredParts)
-				{
+				foreach (KeyValuePair<Part, Part> keyValue in requiredParts) {
 					Part mainPart = keyValue.Key;
 					Part alternativePart = keyValue.Value;
 
-					if (mainPart.bolted && mainPart.installedOnCar)
-					{
+					if (mainPart.bolted && mainPart.installedOnCar) {
 						partCount++;
-					} else if (alternativePart != null && alternativePart.bolted && alternativePart.installedOnCar)
-					{
+					} else if (alternativePart != null && alternativePart.bolted && alternativePart.installedOnCar) {
 						partCount++;
 					}
 				}
@@ -42,15 +39,14 @@ namespace MwcTurbocharger.ModPart
 
 		public void Add(Part mainPart, Part alternativePart)
 		{
-			if (mainPart == null)
-			{
+			if (mainPart == null) {
 				return;
 			}
 
-			if (requiredParts.ContainsKey(mainPart))
-			{
+			if (requiredParts.ContainsKey(mainPart)) {
 				return;
 			}
+
 			requiredParts.Add(mainPart, alternativePart);
 			totalRequiredPartsCount++;
 		}
