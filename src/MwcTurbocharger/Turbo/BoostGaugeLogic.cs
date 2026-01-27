@@ -104,7 +104,7 @@ namespace MwcTurbocharger
 			}
 			catch (Exception ex)
 			{
-				Logger.New("Setup of boost gauge digital display failed", ex);
+				Logger.Warning("Setup of boost gauge digital display failed", ex);
 			}
 
 		}

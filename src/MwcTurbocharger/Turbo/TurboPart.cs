@@ -126,7 +126,7 @@ namespace MwcTurbocharger.Turbo
 			}
 			catch (Exception ex)
 			{
-				Logger.New("Error while trying to save configured boost information", ex);
+				Logger.Error("Error while trying to save configured boost information", ex);
 			}
 		}
 

@@ -140,7 +140,7 @@ namespace MwcTurbocharger
 			}
 			catch (Exception ex)
 			{
-				Logger.New("Error while trying to deserialize save file", "Please check paths to save files", ex);
+				Logger.Error("Error while trying to deserialize save file", "Please check paths to save files", ex);
 			}
 
 			//ModParts
@@ -309,7 +309,7 @@ namespace MwcTurbocharger
 			}
 			catch (Exception ex)
 			{
-				Logger.New("Resetting positions failed", ex);
+				Logger.Warning("Resetting positions failed", ex);
 			}
 		}
 	}

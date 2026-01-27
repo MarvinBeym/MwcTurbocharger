@@ -179,7 +179,7 @@ namespace MwcTurbocharger.Turbo
 				}
 				catch (Exception ex)
 				{
-					Logger.New("Exception was thrown while trying to calculate turbo boost", ex);
+					Logger.Warning("Exception was thrown while trying to calculate turbo boost", ex);
 				}
 			}
 			else

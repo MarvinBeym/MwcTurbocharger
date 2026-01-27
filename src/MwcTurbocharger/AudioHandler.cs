@@ -63,7 +63,7 @@ namespace MwcTurbocharger
 		{
 			if (fileName == "")
 			{
-				Logger.New("No fileName given for loading audio");
+				Logger.Error("No fileName given for loading audio");
 				return;
 			}
 
