@@ -20,7 +20,7 @@ namespace MwcTurbocharger.ModPart
 
 		public BoostGauge(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddScrew(new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), Screw.Type.Normal, 0.4f, 10));
+			AddScrew(new Screw(new Vector3(0, 0, 0), new Vector3(-900, 0, 0), 0.4f));
 
 			logic = AddEventBehaviour<BoostGaugeLogic>(PartEvent.Type.InstallOnCar);
 			logic.Init(this);

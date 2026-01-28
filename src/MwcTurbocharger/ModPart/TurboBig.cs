@@ -31,11 +31,11 @@ namespace MwcTurbocharger.ModPart
 			AddScrews(
 				new[]
 				{
-					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0)),
-				}, 0.5f
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), Screw.Type.Normal),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), Screw.Type.Normal),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), Screw.Type.Normal),
+					new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), Screw.Type.Normal),
+				}, 1f
 			);
 
 			//PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
