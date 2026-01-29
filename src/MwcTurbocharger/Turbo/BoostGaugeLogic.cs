@@ -56,7 +56,16 @@ namespace MwcTurbocharger
 			analogDigitalSwitch = this.transform.FindChild("boost-gauge-button").gameObject;
 
 			analogNeedle = this.transform.FindChild("boost-gauge-needle").gameObject;
+
+			if (analogNeedle == null) {
+				Logger.Error("Failed to find analog needle mesh on boost gauge");
+			}
 			analogNeedleAnimation = analogNeedle.GetComponent<Animation>();
+
+			if (analogNeedleAnimation == null) {
+				Logger.Error("Failed to find analog needle animation component on analog needle mesh");
+			}
+
 			foreach (Material material in this.transform.FindChild("boost-gauge-main").GetComponent<Renderer>()
 				         .materials) {
 				if (!material.name.Contains("boost-gauge-foreground")) {
