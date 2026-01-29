@@ -13,8 +13,7 @@ namespace MwcTurbocharger.ModPart
 
 		public TurboBigBlowoffValve(TurboBigIntercoolerTube parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddClampModel(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 0.43f);
-			AddScrew(new Screw(new Vector3(0, 0, 0), new Vector3(0, 0, 0), 1f));
+			AddClampModel(new Vector3(0, -0.044f, 0), new Vector3(90, 90, 0), 0.48f, 10);
 		}
 	}
 }
