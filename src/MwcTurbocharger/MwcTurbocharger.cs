@@ -93,6 +93,7 @@ namespace MwcTurbocharger
 			);
 			SetupFunction(Setup.ModSettings, ModSettings);
 			SetupFunction(Setup.Update, Update);
+			SetupFunction(Setup.OnSave, OnSave);
 		}
 
 		public void OnNewGame()
@@ -285,6 +286,14 @@ namespace MwcTurbocharger
 			GearRatiosHandler.Handle();
 
 			HandleExhaustSystem();
+		}
+
+		public void OnSave()
+		{
+			TurboPart.Save(this, boostSaveFile, new TurboPart[]
+			{
+				turboBig,
+			});
 		}
 
 		private void HandleExhaustSystem()
