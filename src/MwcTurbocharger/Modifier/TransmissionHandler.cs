@@ -3,7 +3,7 @@ using MSCLoader;
 using MwcModApi.Caching;
 using UnityEngine;
 
-namespace MwcTurbocharger
+namespace MwcTurbocharger.Modifier
 {
 	public static class TransmissionHandler
 	{
