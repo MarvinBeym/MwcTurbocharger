@@ -94,6 +94,7 @@ namespace MwcTurbocharger
 			SetupFunction(Setup.ModSettings, ModSettings);
 			SetupFunction(Setup.Update, Update);
 			SetupFunction(Setup.OnSave, OnSave);
+			SetupFunction(Setup.OnGUI, OnGUI);
 		}
 
 		public void OnNewGame()
@@ -294,6 +295,33 @@ namespace MwcTurbocharger
 			{
 				turboBig,
 			});
+		}
+
+		public void OnGUI()
+		{
+			if (debugGuiSetting.GetValue())
+			{
+				TurboPart turboInstalled = null;
+				if (turboBig.installed)
+				{
+					turboInstalled = turboBig;
+				}
+
+				guiDebug.Handle(new GuiDebugInfo[]
+				{
+					new GuiDebugInfo("DEBUG", "Engine RPM", ((int)CarH.drivetrain.rpm).ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Turbo pressure (bar)", turboInstalled == null ? "NOT INSTALLED" : turboInstalled.boost.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Turbo rpm", turboInstalled == null ? "NOT INSTALLED" : turboInstalled.rpm.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Turbo boost set", turboInstalled == null ? "NOT INSTALLED" : turboInstalled.setBoost.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Power multiplier", CarH.drivetrain.powerMultiplier.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "KM/H", ((int)CarH.drivetrain.differentialSpeed).ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Torque", CarH.drivetrain.torque.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "HP", CarH.drivetrain.currentPower.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Clutch Max Torque", CarH.drivetrain.clutchMaxTorque.ToStringOrEmpty()),
+					new GuiDebugInfo("DEBUG", "Clutch Torque Multiplier",
+						CarH.drivetrain.clutchTorqueMultiplier.ToStringOrEmpty()),
+				});
+			}
 		}
 
 		private void HandleExhaustSystem()
