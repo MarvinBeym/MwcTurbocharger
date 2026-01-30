@@ -58,22 +58,22 @@ namespace MwcTurbocharger.ModPart
 		{
 			return new TurboConfiguration()
 			{
-				boostBase = 2f,
-				boostStartingRpm = 3000,
-				boostStartingRpmOffset = 1600,
+				boostBase = 0.8f,
+				boostStartingRpm = 1200,
+				boostStartingRpmOffset = 1200,
 				boostMin = -0.10f,
-				minSettableBoost = 1.65f,
-				boostSteepness = 1.5f,
-				blowoffDelay = 1.2f,
-				blowoffTriggerBoost = 0.75f,
-				backfireThreshold = 5500,
+				minSettableBoost = 0.6f,
+				boostSteepness = 1f,
+				blowoffDelay = 0.2f,
+				blowoffTriggerBoost = 0.6f,
+				backfireThreshold = 4000,
 				backfireRandomRange = 20,
-				rpmMultiplier = 14,
+				rpmMultiplier = 10,
 				extraPowerMultiplicator = 1.5f,
 				boostSettingSteps = 0.05f,
 				soundboostMinVolume = 0.03f,
-				soundboostMaxVolume = 0.12f,
-				soundboostPitchMultiplicator = 5,
+				soundboostMaxVolume = 0.08f,
+				soundboostPitchMultiplicator = 3.5f,
 				backfireDelay = 0.05f,
 			};
 		}
