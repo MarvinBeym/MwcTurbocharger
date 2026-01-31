@@ -159,6 +159,7 @@ namespace MwcTurbocharger
 			turboBigIntercoolerTube = new TurboBigIntercoolerTube(turboBig);
 			turboBigExhaustOutletTube = new TurboBigExhaustOutletTube(turboBig);
 			turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
+			turboBig.DefineBoostChangingGameObject(turboBigBlowoffValve.boostChangingGameObject);
 
 			/*
 			TurboLogicRequiredParts turboBigRequiredParts = new TurboLogicRequiredParts();
