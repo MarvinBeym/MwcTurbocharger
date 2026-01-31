@@ -47,7 +47,8 @@ namespace MwcTurbocharger.ModPart
 			//boostChangingGameObject.GetComponent<BoxCollider>().size = new Vector3(0.09f, 0.09f, 0.09f);
 
 			//DefineBoostChangingGameObject(boostChangingGameObject);
-			//DefineSpinningTurbineGameObject(gameObject.transform.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);
+
+			DefineSpinningTurbineGameObject(gameObject.transform.FindChild("compressor-turbine").gameObject);
 
 			audioHandler.Add("turboLoop", this, "turbocharger_loop.wav", PartEvent.Type.InstallOnCar, true);
 			audioHandler.Add("grinding", this, "grinding sound.wav", PartEvent.Type.InstallOnCar, true);
