@@ -141,7 +141,7 @@ namespace MwcTurbocharger.Turbo
 
 			//Don't bother continuing with calculation, player can't interact with relevant parts anyway
 			if (!CarH.playerInCar) {
-				boostGauge.SetBoost(config.boostMin, 0, config);
+				boostGauge.SetBoost(0);
 				return;
 			}
 
@@ -180,7 +180,7 @@ namespace MwcTurbocharger.Turbo
 				boost = config.boostMin;
 			}
 
-			boostGauge.SetBoost(boostBeforeRelease, boostBeforeRelease, config);
+			boostGauge.SetBoost(boostBeforeRelease);
 
 			float finalMultiplication = boost * config.extraPowerMultiplicator;
 			CarH.drivetrain.powerMultiplier = 1f + finalMultiplication;
