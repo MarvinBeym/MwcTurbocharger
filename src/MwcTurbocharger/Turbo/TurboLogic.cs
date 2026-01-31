@@ -113,8 +113,8 @@ namespace MwcTurbocharger.Turbo
 				//Not all required installed RESET
 				audioHandler.StopAll();
 
-				if (boostGauge.installed && boostGauge.bolted) {
-					boostGauge.SetDigitalText(!requiredInstalledAndBolted && CarH.hasPower ? "ERR" : "");
+				if (boostGauge.installed && boostGauge.bolted && !requiredInstalledAndBolted) {
+					boostGauge.error = CarH.hasPower;
 				}
 
 				return;

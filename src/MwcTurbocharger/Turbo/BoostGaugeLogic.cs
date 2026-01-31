@@ -3,6 +3,7 @@ using MwcModApi.Caching;
 using MwcModApi.Parts;
 using MwcModApi.Tools;
 using System;
+using MwcTurbocharger.ModPart;
 using MwcTurbocharger.Turbo;
 using UnityEngine;
 
@@ -16,10 +17,9 @@ namespace MwcTurbocharger
 			Digital,
 		};
 
-		private MwcModApi.Parts.Part boostGauge;
+		private BoostGauge boostGauge;
 		private GameObject analogDigitalSwitch;
 		private GameObject analogNeedle;
-		private TextMesh digitalText;
 		private Animation analogNeedleAnimation;
 		private int selectedColor = 0;
 
@@ -45,13 +45,11 @@ namespace MwcTurbocharger
 		public float timeComparer = 0.01f;
 		public float reducer = 0.15f;
 
-		private bool lastElectricityState = false;
 
-		public void Init(MwcModApi.Parts.Part boostGauge)
+		public void Init(BoostGauge boostGauge)
 		{
 			this.boostGauge = boostGauge;
 
-			GameObject digitalTextObject = this.transform.FindChild("boost-gauge-digital-text").gameObject;
 
 			analogDigitalSwitch = this.transform.FindChild("boost-gauge-button").gameObject;
 
@@ -78,47 +76,11 @@ namespace MwcTurbocharger
 
 			foregroundMaterial.SetColor("_Color", availableColors[selectedColor]);
 
-			try {
-				MeshRenderer meshRenderer = digitalTextObject.GetComponent<MeshRenderer>();
-				digitalText = digitalTextObject.GetComponent<TextMesh>();
 
-				CarH.electricity.FsmInject(
-					"Power", "ON", delegate()
-					{
-						if (lastElectricityState == false) {
-							lastElectricityState = true;
-							SwitchedElectricityOn();
-						}
 
-						;
-					}
-				);
-				CarH.electricity.FsmInject(
-					"Power", "OFF", delegate()
-					{
-						if (lastElectricityState == true) {
-							lastElectricityState = false;
-							SwitchedElectricityOff();
-						}
+			try
+			{
 
-						;
-					}
-				);
-
-				/*
-				GameObject lcd = Cache.Find("CORRIS/AssembliesTuning/VINP_AFRgauge/Functions/LCD");
-				MeshRenderer lcdMeshRenderer = lcd.GetComponent<MeshRenderer>();
-				TextMesh lcdTextMesh = lcd.GetComponent<TextMesh>();
-
-				//Coping values from af ratio gauge.
-				meshRenderer.material = lcdMeshRenderer.material;
-
-				digitalText.transform.localPosition = new Vector3(0f, -0.0135f, 0.0135f);
-				digitalText.font = lcdTextMesh.font;
-				digitalText.fontSize = 0;
-				digitalText.characterSize = 1.55f;
-				digitalText.transform.localScale = lcdTextMesh.transform.localScale;
-				*/
 				Color color = Color.white;
 				color.a = 0.2f;
 				foregroundMaterial.SetColor("_Color", color);
@@ -130,7 +92,7 @@ namespace MwcTurbocharger
 		void Start()
 		{
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
-			digitalText.text = "";
+			boostGauge.SetDigitalText("");
 		}
 
 		void Update()
@@ -173,25 +135,25 @@ namespace MwcTurbocharger
 			foregroundMaterial.SetColor("_Color", color);
 		}
 
-		private void SwitchedElectricityOn()
+		public void SwitchedElectricityOn()
 		{
 			if (gaugeMode == GaugeMode.Analog) {
 				analogNeedleAnimation.Play();
 			} else {
-				digitalText.text = "0.00";
+				boostGauge.SetDigitalText(0);
 			}
 
 			ChangeTextColor(selectedColor);
 		}
 
-		private void SwitchedElectricityOff()
+		public void SwitchedElectricityOff()
 		{
 			if (analogNeedleAnimation.isPlaying) {
 				analogNeedleAnimation.Stop();
 			}
 
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
-			digitalText.text = "";
+			boostGauge.SetDigitalText("");
 
 			Color color = Color.white;
 			color.a = 0.2f;
@@ -204,10 +166,10 @@ namespace MwcTurbocharger
 			gaugeMode = newGaugeMode;
 			switch (gaugeMode) {
 				case GaugeMode.Analog:
-					digitalText.text = "";
+					boostGauge.SetDigitalText("");
 					break;
 				case GaugeMode.Digital:
-					digitalText.text = "0.00";
+					boostGauge.SetDigitalText(0);
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 					break;
 			}
@@ -219,8 +181,8 @@ namespace MwcTurbocharger
 				return;
 			}
 
-			if (digitalText.text == "ERR") {
-				digitalText.text = "";
+			if (boostGauge.error) {
+				boostGauge.error = false;
 			}
 
 			switch (gaugeMode) {
@@ -228,14 +190,9 @@ namespace MwcTurbocharger
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, GetNeedleAngle(boost));
 					break;
 				case GaugeMode.Digital:
-					SetDigitalText(boost.ToString("0.00"));
+					boostGauge.SetDigitalText(boost);
 					break;
 			}
-		}
-
-		internal void SetDigitalText(string text)
-		{
-			digitalText.text = text;
 		}
 
 		private float GetNeedleAngle(float valueMap, float minMap = 0f, float maxMap = 3)
