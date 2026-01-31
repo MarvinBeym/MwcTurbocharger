@@ -170,18 +170,17 @@ namespace MwcTurbocharger
 				turboBig.conditionStorage.UpdateCondition("racingCarb", false);
 			});
 
-			/*
 			TurboLogicRequiredParts turboBigRequiredParts = new TurboLogicRequiredParts();
 			turboBigRequiredParts.Add(turboBig);
 			turboBigRequiredParts.Add(turboBigExhaustOutletTube);
 			turboBigRequiredParts.Add(turboBigBlowoffValve);
 			turboBigRequiredParts.Add(turboBigIntercoolerTube);
 			turboBigRequiredParts.Add(exhaustHeader);
-			turboBigRequiredParts.Add(manifold);
-			turboBigRequiredParts.Add(intercoolerManifoldTube);
+			turboBigRequiredParts.Add(racingCarbManifold);
+			turboBigRequiredParts.Add(intercoolerRacingCarbManifoldTube);
 			turboBigRequiredParts.Add(intercooler);
 			turboBig.DefineRequiredParts(turboBigRequiredParts);
-			*/
+
 			turboBigKit = new Kit(
 				"Turbocharger Kit",
 				new Part[]
