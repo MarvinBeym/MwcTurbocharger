@@ -334,10 +334,8 @@ namespace MwcTurbocharger
 		private void PosReset()
 		{
 			try {
-				//manifoldTwinCarb_kit.ResetToDefault();
-				//Manifold_kit.ResetToDefault();
-				//turboBig_kit.ResetToDefault();
-				//turboSmall_kit.ResetToDefault();
+				racingCarbManifoldKit.ResetToDefault();
+				turboBigKit.ResetToDefault();
 				partsList.ForEach(delegate(Part part) { part.ResetToDefault(); });
 			} catch (Exception ex) {
 				Logger.Warning("Resetting positions failed", ex);
