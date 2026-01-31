@@ -26,6 +26,8 @@ namespace MwcTurbocharger.ModPart
 
 		public const float minAngle = 45;
 		public const float maxAngle = 315;
+		public const float analogDigitsBrightnessOff = 0.2f;
+		public const float analogDigitsBrightnessOn = 1f;
 
 		private readonly Color[] availableColors = {
 			Color.white,
@@ -46,6 +48,13 @@ namespace MwcTurbocharger.ModPart
 		private GameObject analogNeedle;
 		private Animation analogNeedleAnimation;
 		private Material analogDigitsMaterial;
+
+		private Material analogNeedleTipMaterial;
+		private Shader analogNeedleTipLightsOffShader;
+		private Shader analogNeedleTipLightsOnShader;
+
+
+		private bool dashLightsOn;
 
 		public GaugeMode gaugeMode { get; protected set; } = GaugeMode.Analog;
 
@@ -73,19 +82,18 @@ namespace MwcTurbocharger.ModPart
 			}
 
 			analogDigitsMaterial = GetAnalogDigitsMaterial();
+			analogNeedleTipMaterial = GetAnalogNeedleTipMaterial();
 			if (analogDigitsMaterial == null) {
 				Logger.Error("Failed to find analog digits material");
-
 			}
 
-			analogDigitsMaterial.SetColor("_Color", availableColors[selectedColor]);
-
-			Color color = Color.white;
-			color.a = 0.2f;
-			analogDigitsMaterial.SetColor("_Color", color);
+			analogNeedleTipLightsOnShader = Shader.Find("Unlit/Color");
+			analogNeedleTipLightsOffShader = Shader.Find("Standard");
 
 			SetupElectricityDetection();
+			SetupDashLightDetection();
 			CloneLcdText();
+			OnSwitchedElectricityOff();
 		}
 
 		private Material GetAnalogDigitsMaterial()
@@ -93,6 +101,49 @@ namespace MwcTurbocharger.ModPart
 			return transform.FindChild("boost-gauge-main")
 				.GetComponent<Renderer>().materials
 				.FirstOrDefault(material => material.name.Contains("boost-gauge-foreground"));
+		}
+
+		private Material GetAnalogNeedleTipMaterial()
+		{
+			return analogNeedle
+				.GetComponent<Renderer>().materials
+				.FirstOrDefault(material => material.name.Contains("RedPlastic-Needle"));
+		}
+
+		private void SetupDashLightDetection()
+		{
+			GameObject electricitySystems = Cache.Find("CORRIS/Simulation/Electricity/PowerON/Systems");
+
+			electricitySystems.FsmInject("LightModes", "Off", OnDashLightsOff);
+			electricitySystems.FsmInject("LightModes", "Park", OnDashLightsOn);
+			electricitySystems.FsmInject("LightModes", "Driving", OnDashLightsOn);
+			electricitySystems.FsmInject("LightModes", "Hi Beam", OnDashLightsOn);
+
+		}
+
+		private void OnDashLightsOn()
+		{
+			if (analogNeedleTipMaterial.shader == analogNeedleTipLightsOnShader) {
+				return;
+			}
+
+			dashLightsOn = true;
+
+			analogNeedleTipMaterial.shader = analogNeedleTipLightsOnShader;
+			ChangeAnalogColor(selectedColor);
+		}
+
+		private void OnDashLightsOff()
+		{
+			if (analogNeedleTipMaterial.shader == analogNeedleTipLightsOffShader)
+			{
+				return;
+			}
+			
+			dashLightsOn = false;
+
+			analogNeedleTipMaterial.shader = analogNeedleTipLightsOffShader;
+			ChangeAnalogColor(selectedColor);
 		}
 
 		private void SetupElectricityDetection()
@@ -189,6 +240,11 @@ namespace MwcTurbocharger.ModPart
 				SetDigitalText(0);
 			}
 
+			if (dashLightsOn)
+			{
+				OnDashLightsOn();
+			}
+
 			ChangeAnalogColor(selectedColor);
 		}
 
@@ -201,10 +257,8 @@ namespace MwcTurbocharger.ModPart
 
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 			SetDigitalText("");
-
-			Color color = Color.white;
-			color.a = 0.2f;
-			analogDigitsMaterial.SetColor("_Color", color);
+			ChangeAnalogColor(0);
+			OnDashLightsOff();
 		}
 
 		private float GetNeedleAngle(float valueMap, float minMap = 0f, float maxMap = 3)
@@ -230,7 +284,16 @@ namespace MwcTurbocharger.ModPart
 			newColorIndex = newColorIndex < 0 ? availableColors.Length - 1 : newColorIndex;
 			selectedColor = newColorIndex;
 			Color color = availableColors[newColorIndex];
-			color.a = 0.6f;
+
+			float brightness;
+
+			if (CarH.hasPower) {
+				brightness = dashLightsOn ? analogDigitsBrightnessOn : analogDigitsBrightnessOff;
+			} else {
+				brightness = analogDigitsBrightnessOff;
+			}
+
+			color.a = brightness;
 
 			analogDigitsMaterial.SetColor("_Color", color);
 		}
