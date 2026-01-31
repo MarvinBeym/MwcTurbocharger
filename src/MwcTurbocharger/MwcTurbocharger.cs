@@ -161,6 +161,15 @@ namespace MwcTurbocharger
 			turboBigBlowoffValve = new TurboBigBlowoffValve(turboBigIntercoolerTube);
 			turboBig.DefineBoostChangingGameObject(turboBigBlowoffValve.boostChangingGameObject);
 
+			racingCarb.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
+			{
+				turboBig.conditionStorage.UpdateCondition("racingCarb", true);
+			});
+			racingCarb.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
+			{
+				turboBig.conditionStorage.UpdateCondition("racingCarb", false);
+			});
+
 			/*
 			TurboLogicRequiredParts turboBigRequiredParts = new TurboLogicRequiredParts();
 			turboBigRequiredParts.Add(turboBig);
