@@ -17,7 +17,7 @@ namespace MwcTurbocharger
 			Digital,
 		};
 
-		private BoostGauge boostGauge;
+		private BoostGauge part;
 		private GameObject analogDigitalSwitch;
 		private GameObject analogNeedle;
 		private Animation analogNeedleAnimation;
@@ -46,9 +46,9 @@ namespace MwcTurbocharger
 		public float reducer = 0.15f;
 
 
-		public void Init(BoostGauge boostGauge)
+		public void Init(BoostGauge part)
 		{
-			this.boostGauge = boostGauge;
+			this.part = part;
 
 
 			analogDigitalSwitch = this.transform.FindChild("boost-gauge-button").gameObject;
@@ -92,7 +92,7 @@ namespace MwcTurbocharger
 		void Start()
 		{
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
-			boostGauge.SetDigitalText("");
+			part.SetDigitalText("");
 		}
 
 		void Update()
@@ -140,7 +140,7 @@ namespace MwcTurbocharger
 			if (gaugeMode == GaugeMode.Analog) {
 				analogNeedleAnimation.Play();
 			} else {
-				boostGauge.SetDigitalText(0);
+				part.SetDigitalText(0);
 			}
 
 			ChangeTextColor(selectedColor);
@@ -153,7 +153,7 @@ namespace MwcTurbocharger
 			}
 
 			analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
-			boostGauge.SetDigitalText("");
+			part.SetDigitalText("");
 
 			Color color = Color.white;
 			color.a = 0.2f;
@@ -162,14 +162,14 @@ namespace MwcTurbocharger
 
 		private void SwitchGaugeMode(GaugeMode newGaugeMode)
 		{
-			UserInteraction.PlayTouch(boostGauge.gameObject);
+			UserInteraction.PlayTouch(part.gameObject);
 			gaugeMode = newGaugeMode;
 			switch (gaugeMode) {
 				case GaugeMode.Analog:
-					boostGauge.SetDigitalText("");
+					part.SetDigitalText("");
 					break;
 				case GaugeMode.Digital:
-					boostGauge.SetDigitalText(0);
+					part.SetDigitalText(0);
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 					break;
 			}
@@ -181,8 +181,8 @@ namespace MwcTurbocharger
 				return;
 			}
 
-			if (boostGauge.error) {
-				boostGauge.error = false;
+			if (part.error) {
+				part.error = false;
 			}
 
 			switch (gaugeMode) {
@@ -190,7 +190,7 @@ namespace MwcTurbocharger
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, GetNeedleAngle(boost));
 					break;
 				case GaugeMode.Digital:
-					boostGauge.SetDigitalText(boost);
+					part.SetDigitalText(boost);
 					break;
 			}
 		}
