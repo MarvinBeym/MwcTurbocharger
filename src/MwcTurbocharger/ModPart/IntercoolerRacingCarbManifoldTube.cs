@@ -9,6 +9,7 @@ namespace MwcTurbocharger.ModPart
 		protected override string partName => "Intercooler Racing Carb Manifold Tube";
 		protected override Vector3 partInstallPosition => new Vector3(0.08508901f, 0.040259f, -0.29815f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
+		protected override DisableCollision disableCollisionWhenInstalled => DisableCollision.InstalledOnParent;
 
 		public IntercoolerRacingCarbManifoldTube(RacingCarbManifold parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{

@@ -129,6 +129,7 @@ namespace MwcTurbocharger
 
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
 
+			//ToDo: bug/problem with GamePart, if more than one "similar" part are defined, the install process get's blocked for all parts as soon as a part is installed once and then removed
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
 			chromeHeadersA = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSa03");
 			chromeHeadersC = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSc02");
@@ -202,6 +203,7 @@ namespace MwcTurbocharger
 
 			SetupShopItems();
 			SetupPartInstallBlocking();
+			//SetupExhaustSystem();
 			assetsBundle.Unload(false);
 		}
 
@@ -337,6 +339,11 @@ namespace MwcTurbocharger
 		private void HandleExhaustSystem()
 		{
 			//ToDo: implement for MWC
+		}
+
+		private void SetupExhaustSystem()
+		{
+			GameObject fireCylinderhead = Cache.Find("MuzzleCylHead");
 		}
 
 		private void PosReset()

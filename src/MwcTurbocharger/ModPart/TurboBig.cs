@@ -20,6 +20,7 @@ namespace MwcTurbocharger.ModPart
 		protected override string partId => "turboBig";
 		protected override Vector3 partInstallPosition => new Vector3(-0.156245f, -0.08874601f, 0.0885f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
+		protected override DisableCollision disableCollisionWhenInstalled => DisableCollision.InstalledOnParent;
 
 		public TurboBig(
 			MwcTurbocharger mod,

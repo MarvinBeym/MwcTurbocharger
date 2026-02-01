@@ -23,6 +23,7 @@ namespace MwcTurbocharger.ModPart
 		protected override string partName => "Boost Gauge";
 		protected override Vector3 partInstallPosition => new Vector3(0.13f, -0.141f, 0.165f);
 		protected override Vector3 partInstallRotation => new Vector3(80, 180, 180);
+		protected override DisableCollision disableCollisionWhenInstalled => DisableCollision.InstalledOnParent;
 
 		public const float minAngle = 45;
 		public const float maxAngle = 315;

@@ -10,6 +10,7 @@ namespace MwcTurbocharger.ModPart
 		protected override string partName => "Racing Turbo Exhaust Outlet Tube";
 		protected override Vector3 partInstallPosition => new Vector3(-0.000678f, -0.165018f, 0.25361f);
 		protected override Vector3 partInstallRotation => new Vector3(0, 0, 0);
+		protected override DisableCollision disableCollisionWhenInstalled => DisableCollision.InstalledOnParent;
 
 		public TurboBigExhaustOutletTube(TurboBig parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
