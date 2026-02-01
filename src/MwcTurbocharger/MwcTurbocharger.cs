@@ -128,8 +128,6 @@ namespace MwcTurbocharger
 			racingCarb = new GamePart("VINP_Carburettor", "4 Barrell Racing Carb(VINXX)");
 
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
-
-			//ToDo: bug/problem with GamePart, if more than one "similar" part are defined, the install process get's blocked for all parts as soon as a part is installed once and then removed
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
 			chromeHeadersA = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSa03");
 			chromeHeadersC = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSc02");
