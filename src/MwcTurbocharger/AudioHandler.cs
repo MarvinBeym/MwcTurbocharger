@@ -81,6 +81,31 @@ namespace MwcTurbocharger
 			Add(id, audioSource);
 		}
 
+		public void Add(
+			string id,
+			Part part,
+			string assetName,
+			AssetBundle assetBundle,
+			PartEvent.Type eventTypeWhenActive,
+			bool loop = false
+		)
+		{
+			if (assetName == "")
+			{
+				Logger.Error("No assetName given for loading audio");
+				return;
+			}
+
+			AudioSource audioSource = part.AddEventBehaviour<AudioSource>(eventTypeWhenActive);
+			var a = assetBundle.LoadAsset<AudioClip>(assetName);
+			audioSource.clip = a;
+			audioSource.minDistance = 1;
+			audioSource.maxDistance = 10;
+			audioSource.spatialBlend = 1;
+			audioSource.loop = loop;
+			Add(id, audioSource);
+		}
+
 		public AudioSource Get(string id)
 		{
 			return noiseStorage.TryGetValue(id, out AudioSource audio) ? audio : null;
