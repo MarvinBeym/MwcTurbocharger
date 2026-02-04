@@ -106,6 +106,23 @@ namespace MwcTurbocharger
 			Add(id, audioSource);
 		}
 
+		public void ReplaceClip(
+			string id,
+			AudioClip newClip
+		)
+		{
+			AudioSource audioSource = Get(id);
+			audioSource.clip = newClip;
+		}
+
+		public void ReplaceClip(
+			AudioSource audioSource,
+			AudioClip newClip
+		)
+		{
+			audioSource.clip = newClip;
+		}
+
 		public AudioSource Get(string id)
 		{
 			return noiseStorage.TryGetValue(id, out AudioSource audio) ? audio : null;
