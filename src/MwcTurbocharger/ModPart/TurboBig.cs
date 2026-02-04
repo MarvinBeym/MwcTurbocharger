@@ -43,9 +43,9 @@ namespace MwcTurbocharger.ModPart
 
 			DefineSpinningTurbineGameObject(gameObject.transform.FindChild("compressor-turbine").gameObject);
 
-			audioHandler.Add("turboLoop", this, "turbocharger_loop.wav", PartEvent.Type.InstallOnCar, true);
-			audioHandler.Add("grinding", this, "grinding sound.wav", PartEvent.Type.InstallOnCar, true);
-			audioHandler.Add("blowoff", this, "turbocharger_blowoff.wav", PartEvent.Type.InstallOnCar);
+			audioHandler.Add("turboLoop", this, "turbocharger_loop.wav", this.partBaseInfo.assetBundle, PartEvent.Type.InstallOnCar, true);
+			audioHandler.Add("grinding", this, "grinding.wav", this.partBaseInfo.assetBundle, PartEvent.Type.InstallOnCar, true);
+			audioHandler.Add("blowoff", this, "blowoff_valve.wav", this.partBaseInfo.assetBundle, PartEvent.Type.InstallOnCar);
 		}
 
 		protected override TurboConfiguration SetupTurboConfig()
