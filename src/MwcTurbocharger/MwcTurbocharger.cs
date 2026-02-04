@@ -117,7 +117,7 @@ namespace MwcTurbocharger
 				}
 			);
 
-			assetsBundle = Helper.LoadAssetBundle(this, "turbocharger.unity3d");
+			assetsBundle = Helper.LoadAssetBundle(assetBundleName);
 			TurboPart.LoadAssets(assetsBundle);
 			partBaseInfo = new PartBaseInfo(this, assetsBundle, partsList);
 
