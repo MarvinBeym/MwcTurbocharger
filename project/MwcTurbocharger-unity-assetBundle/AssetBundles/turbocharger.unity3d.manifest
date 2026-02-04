@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2874121330
+CRC: 2134741797
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 937c72da4f88ddcdb8e9d81868d67f38
+    Hash: fb842fcd155128270031b6f5d7346b6a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1e403079b19a616402bc7bf27f8f01c8
+    Hash: fb9961c74ffb6ba57e4259f0a8c9eebd
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -33,6 +33,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 74
   Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
 - Class: 102
   Script: {instanceID: 0}
 - Class: 111
@@ -46,17 +48,22 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
+- Assets/Audio/backfire.wav
 - Assets/ProductImages/intercooler.png
 - Assets/Objects/racingCarb-manifold/racingCarb-manifold.prefab
+- Assets/Audio/blowoff_surge.wav
 - Assets/Prefabs/boost-gauge.prefab
 - Assets/fx_fire.prefab
 - Assets/Prefabs/intercooler.prefab
 - Assets/Prefabs/turboBig.prefab
 - Assets/ProductImages/turboBig-kit.png
+- Assets/Audio/blowoff_valve.wav
 - Assets/ProductImages/exhaust-header.png
 - Assets/Prefabs/exhaust-header.prefab
 - Assets/Prefabs/intercooler-manifold-racingCarb-tube.prefab
+- Assets/Audio/grinding.wav
 - Assets/Prefabs/turboBig-intercooler-tube.prefab
+- Assets/Audio/turbocharger_loop.wav
 - Assets/Prefabs/turboBig-blowoff-valve.prefab
 - Assets/ProductImages/boost-gauge.png
 - Assets/ProductImages/turboBig-blowoff-valve.png
