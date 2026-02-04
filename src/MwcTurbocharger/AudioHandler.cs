@@ -113,15 +113,40 @@ namespace MwcTurbocharger
 
 		public void Play(AudioSource audioSource)
 		{
-			if (audioSource == null) {
+			if (audioSource == null || audioSource.clip == null)
+			{
 				return;
 			}
 
-			if (audioSource.isPlaying) {
+			if (audioSource.isPlaying)
+			{
 				return;
 			}
 
 			audioSource.Play();
+		}
+
+		public void Play(AudioSource audioSource, float volume, float pitch)
+		{
+			SetVolume(audioSource, volume);
+			SetPitch(audioSource, pitch);
+			Play(audioSource);
+		}
+
+		public void Play(AudioSource audioSource, float volume)
+		{
+			SetVolume(audioSource, volume);
+			Play(audioSource);
+		}
+
+		public void Play(string id, float volume, float pitch)
+		{
+			Play(Get(id), volume, pitch);
+		}
+
+		public void Play(string id, float volume)
+		{
+			Play(Get(id), volume);
 		}
 
 		public void Play(string id)

@@ -85,7 +85,6 @@ namespace MwcTurbocharger.Turbo
 		{
 			turboLoopAudio = audioHandler.Get("turboLoop");
 			blowoffAudio = audioHandler.Get("blowoff");
-			audioHandler.SetVolume(blowoffAudio, 0.2f);
 			audioHandler.SetPitch(blowoffAudio, 1.2f);
 			conditionStorage.DefineConditionsHaveUpdatedAction(
 				() =>
@@ -122,8 +121,6 @@ namespace MwcTurbocharger.Turbo
 
 			blowoffTimer += Time.deltaTime;
 
-			audioHandler.Play(turboLoopAudio);
-
 			//boostMaxConfigured = CalculateConfigurationBoost(boostMaxConfigured, config.boostBase, turbo.conditions);
 			float soundBoost = CalculateBoost(engineRpm);
 
@@ -131,10 +128,12 @@ namespace MwcTurbocharger.Turbo
 				config.boostMin, boostMaxConfigured, config.soundboostMinVolume, config.soundboostMaxVolume
 			);
 
-			audioHandler.SetVolume(turboLoopAudio, soundBoost * MwcTurbocharger.turboVolumeSetting.GetValue() / 100);
-			audioHandler.SetPitch(turboLoopAudio, soundBoost * config.soundboostPitchMultiplicator);
+			audioHandler.Play(
+				turboLoopAudio, 
+				soundBoost * MwcTurbocharger.turboVolumeSetting.GetValue() / 100,
+				soundBoost * config.soundboostPitchMultiplicator
+			);
 
-			audioHandler.SetVolume(blowoffAudio, 0.2f * MwcTurbocharger.blowoffVolumeSetting.GetValue() / 100);
 			audioHandler.SetVolume("backfire", (float) MwcTurbocharger.backfireVolumeSetting.GetValue() / 100);
 
 			RotateTurbine(spinningTurbineGameObject);
@@ -158,7 +157,7 @@ namespace MwcTurbocharger.Turbo
 				boost = config.boostMin;
 				blowoffAllowed = false;
 				blowoffTimer = 0;
-				audioHandler.Play(blowoffAudio);
+				audioHandler.Play(blowoffAudio, 0.2f * MwcTurbocharger.blowoffVolumeSetting.GetValue() / 100);
 			}
 
 			if (blowoffTimer >= config.blowoffDelay) {
