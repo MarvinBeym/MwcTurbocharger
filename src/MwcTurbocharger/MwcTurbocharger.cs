@@ -75,6 +75,8 @@ namespace MwcTurbocharger
 		private GamePart chromeHeadersC;
 		private GamePart exhaustManifold;
 		private GamePart exhausHeaders;
+		private GamePart exhaustPipeRear;
+		private GamePart exhaustMuffler;
 
 		private GamePart dashboard;
 
@@ -130,6 +132,8 @@ namespace MwcTurbocharger
 			cylinderHead = new GamePart("VINP_Cylinderhead", "Cylinder Head(VINX0)");
 			ceramicHeaders = new GamePart("VINP_ExhaustManifold", "Ceramic Coated Headers(VINXX)");
 			chromeHeadersA = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSa03");
+			exhaustPipeRear = new GamePart("VINP_ExhaustRear", "Exhaust Pipe Rear(VINXX)");
+			exhaustMuffler = new GamePart("VINP_ExhaustMuffler", "Exhaust Muffler(VINXX)");
 			chromeHeadersC = new GamePart("VINP_ExhaustManifold", "Chrome Headers(VINXX)", "HEADERSc02");
 			exhaustManifold = new GamePart("VINP_ExhaustManifold", "Exhaust Manifold(VINXX)");
 			exhausHeaders = new GamePart("VINP_ExhaustManifold", "Exhaust Headers(VINXX)");
@@ -201,7 +205,7 @@ namespace MwcTurbocharger
 
 			SetupShopItems();
 			SetupPartInstallBlocking();
-			//SetupExhaustSystem();
+			SetupExhaustSystem();
 			assetsBundle.Unload(false);
 		}
 
@@ -339,9 +343,88 @@ namespace MwcTurbocharger
 			//ToDo: implement for MWC
 		}
 
+		private bool fireCylinderAnimationActiveBefore = false;
+
 		private void SetupExhaustSystem()
 		{
-			GameObject fireCylinderhead = Cache.Find("MuzzleCylHead");
+			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
+			{
+				GameObject fireCylinderHead = Cache.Find("MuzzleCylHead");
+				if (!fireCylinderHead)
+				{
+					return;
+				}
+
+				PlayMakerFSM fireCylinderAnimation = fireCylinderHead.FindFsm("Animate");
+				if (fireCylinderAnimation == null)
+				{
+					return;
+				}
+
+				fireCylinderAnimation.enabled = false;
+				fireCylinderHead.SetActive(false);
+			});
+			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
+			{
+				GameObject fireCylinderHead = Cache.Find("MuzzleCylHead");
+				if (!fireCylinderHead) {
+					return;
+				}
+				
+				PlayMakerFSM fireCylinderAnimation = fireCylinderHead.FindFsm("Animate");
+				if (fireCylinderAnimation == null)
+				{
+					return;
+				}
+
+				fireCylinderAnimation.enabled = true;
+				fireCylinderHead.SetActive(true);
+			});
+
+			//ToDo: current implementation of InstallOnCar/UninstallFromCar events can't be used
+			//		when exhaustHeader installs, the direct children event listeners are invoked,
+			//		however any events of further children of those direct children are not invoked
+
+			GameObject exhaustSmoke = CarH.car.FindChild("ExhaustSmoke", true);
+			GameObject exhaustFromEngine = Cache.Find("CORRIS/Simulation/ExhaustCorris/FromEngine");
+			GameObject exhaustFromPipeRear = Cache.Find("CORRIS/Simulation/ExhaustCorris/FromPipeRear");
+			GameObject exhaustFromMufflerRear = Cache.Find("CORRIS/Simulation/ExhaustCorris/FromMufflerRear");
+
+			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
+			{
+				if (turboBigExhaustOutletTube.installedOnCar)
+				{
+					return;
+				}
+				exhaustSmoke.transform.SetParent(exhaustHeader.transform, false);
+			});
+
+			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
+			{
+				exhaustSmoke.transform.SetParent(exhaustFromEngine.transform, false);
+			});
+
+			turboBigExhaustOutletTube.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
+			{
+				if (exhaustPipeRear.installedOnCar && !exhaustMuffler.installedOnCar) {
+					exhaustSmoke.transform.SetParent(exhaustFromPipeRear.transform, false);
+				} else if (exhaustMuffler.installedOnCar && exhaustPipeRear.installedOnCar) {
+					exhaustSmoke.transform.SetParent(exhaustFromMufflerRear.transform, false);
+				} else {
+					exhaustSmoke.transform.SetParent(turboBigExhaustOutletTube.transform, false);
+				}
+			});
+
+			turboBigExhaustOutletTube.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
+			{
+				if (exhaustHeader.installedOnCar)
+				{
+					exhaustSmoke.transform.SetParent(exhaustHeader.transform, false);
+					return;
+				}
+
+				exhaustSmoke.transform.parent.SetParent(exhaustFromEngine.transform, false);
+			});
 		}
 
 		private void PosReset()
