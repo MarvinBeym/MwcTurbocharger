@@ -213,7 +213,7 @@ namespace MwcTurbocharger
 		{
 			var shopBaseInfo = new ShopBaseInfo(this, assetsBundle);
 			var shopSpawnLocation = Shop.SpawnLocation.Fleetari.Counter;
-
+			
 			Shop shop = Shop.GetInstance();
 			ShopLocation shopLocation = shop.GetShopLocation(ShopLocationOption.Fleetari);
 
@@ -225,7 +225,7 @@ namespace MwcTurbocharger
 					new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit, "racingCarb-manifold-kit.png"),
 					new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler, "intercooler.png"),
 					new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge, "boost-gauge.png"),
-					new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader, "exhaust-header"),
+					new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader, "exhaust-header.png"),
 				}
 			);
 		}
