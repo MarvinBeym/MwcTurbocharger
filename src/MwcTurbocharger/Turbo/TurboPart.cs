@@ -33,7 +33,7 @@ namespace MwcTurbocharger.Turbo
 		protected TurboPart(
 			MwcTurbocharger mod,
 			BoostGauge boostGauge,
-			MwcModApi.Parts.Part parent,
+			Part parent,
 			Dictionary<string, float> boostSave
 		) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
@@ -76,7 +76,7 @@ namespace MwcTurbocharger.Turbo
 			this.boostChangingGameObject = boostChangingGameObject;
 		}
 
-		public void DefineBackfire(MwcModApi.Parts.Part backfirePart, AudioSource backfireAudioSource)
+		public void DefineBackfire(Part backfirePart, AudioSource backfireAudioSource)
 		{
 			if (logic.backFireLogic != null) {
 				return;

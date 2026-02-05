@@ -57,7 +57,7 @@ namespace MwcTurbocharger
 
 		public void Add(
 			string id,
-			MwcModApi.Parts.Part part,
+			Part part,
 			string fileName,
 			PartEvent.Type eventTypeWhenActive,
 			bool loop = false

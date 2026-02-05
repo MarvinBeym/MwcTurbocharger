@@ -5,7 +5,6 @@ using MwcModApi.PaintingSystem;
 using MwcModApi.Parts;
 using MwcModApi.Parts.EventSystem;
 using MwcModApi.Parts.Game;
-using MwcModApi.Parts.PartBox;
 using MwcModApi.Shopping;
 using MwcModApi.Tools;
 using MwcTurbocharger.Gui;
@@ -15,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using MwcModApi.Parts.PartBox;
 using MwcTurbocharger.Modifier;
 using UnityEngine;
 
