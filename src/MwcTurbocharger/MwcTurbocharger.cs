@@ -258,15 +258,14 @@ namespace MwcTurbocharger
 			Settings.AddHeader("Settings");
 
 			rotateTurbineSetting = Settings.AddCheckBox("rotateTurbineSetting", "Allow turbo turbine rotation");
-			backfireEffectSetting = Settings.AddCheckBox("backfireEffectSetting", "Allow backfire effect for turbo");
+			//backfireEffectSetting = Settings.AddCheckBox("backfireEffectSetting", "Allow backfire effect for turbo");
 
 			Settings.AddHeader("Volume", Color.clear);
 			turboVolumeSetting =
 				Settings.AddSlider("turboVolumeSetting", "Turbo Sound Volume (loop)", 0, 200, 100);
 			blowoffVolumeSetting =
 				Settings.AddSlider("blowoffVolumeSetting", "Blowoff Sound Volume", 0, 200, 100);
-			backfireVolumeSetting =
-				Settings.AddSlider("backfireVolumeSetting ", "Backfire Sound Volume", 0, 200, 100);
+			//backfireVolumeSetting = Settings.AddSlider("backfireVolumeSetting ", "Backfire Sound Volume", 0, 200, 100);
 
 			TransmissionHandler.SetupSettings(this);
 			GearRatiosHandler.SetupSettings(this);

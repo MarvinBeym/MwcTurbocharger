@@ -134,7 +134,7 @@ namespace MwcTurbocharger.Turbo
 				soundBoost * config.soundboostPitchMultiplicator
 			);
 
-			audioHandler.SetVolume("backfire", (float) MwcTurbocharger.backfireVolumeSetting.GetValue() / 100);
+			//audioHandler.SetVolume("backfire", (float) MwcTurbocharger.backfireVolumeSetting.GetValue() / 100);
 
 			RotateTurbine(spinningTurbineGameObject);
 
@@ -166,9 +166,9 @@ namespace MwcTurbocharger.Turbo
 
 					if (boost > 0) {
 						//if ((bool)mod.partsWearSetting.Value && (turbo.wears.Length > 0 || turbo.wears == null)) { boost = HandleWear(boost); }
-						if (MwcTurbocharger.backfireEffectSetting.GetValue()) {
+						/*if (MwcTurbocharger.backfireEffectSetting.GetValue()) {
 							HandleBackfire(engineRpm);
-						}
+						}*/
 					}
 
 					boostBeforeRelease = boost;
