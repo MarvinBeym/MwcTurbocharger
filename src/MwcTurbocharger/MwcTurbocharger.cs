@@ -195,7 +195,7 @@ namespace MwcTurbocharger
 			);
 
 			racingCarbManifoldKit = new Kit(
-				"Weber Kit",
+				"Racing Carburetor Kit",
 				new Part[]
 				{
 					racingCarbManifold,
