@@ -261,32 +261,34 @@ namespace MwcTurbocharger.Turbo
 			}
 		}
 
-		public float CalculateSoundBoost(float rpm, float boostMax, float steepness)
+		public float CalculateSoundBoost(float rpm, float boostMax, float increasement)
 		{
-			return GetBoostCalculationFunction(rpm, 0, 0, 0, boostMax, steepness);
+			return GetBoostCalculationFunction(rpm, 0, 0, boostMax, increasement);
 		}
 
 		public float GetBoostCalculationFunction(
 			float rpm,
 			float startingRpm,
-			float startingRpmOffset,
 			float boostMin,
 			float boostMax,
-			float steepness
+			float increasement
 		)
 		{
-			float function = boostMax
-			                 / (1 + (float) Math.Exp(-(steepness / 1000) * (rpm - startingRpm - startingRpmOffset)));
-			//float function = boostMax * (float)Math.Tanh((rpm - startingRpm) / (steepness));
-			return Mathf.Clamp(function, boostMin, boostMax);
+			return Mathf.Clamp(boostMax * (float)Math.Tanh((rpm - startingRpm) / increasement), 
+				boostMin, 
+				boostMax
+				);
 		}
 
 		public float CalculateBoost(float rpm)
 		{
 			float newBoostMax = Mathf.Clamp(setBoost, config.minSettableBoost, boostMaxConfigured);
 			return GetBoostCalculationFunction(
-				rpm, config.boostStartingRpm, config.boostStartingRpmOffset, config.boostMin, newBoostMax,
-				config.boostSteepness
+				rpm, 
+				config.boostStartingRpm, 
+				config.boostMin, 
+				newBoostMax,
+				config.boostIncreasement
 			);
 		}
 

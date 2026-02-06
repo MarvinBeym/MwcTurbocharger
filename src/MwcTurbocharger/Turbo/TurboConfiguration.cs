@@ -7,25 +7,6 @@ namespace MwcTurbocharger.Turbo
 {
 	public class TurboConfiguration
 	{
-		/*
-	    public float boostBase => MwcTurbocharger.boostBase.GetValue();
-		public float boostStartingRpm => MwcTurbocharger.boostStartingRpm.GetValue();
-		public float boostMin => MwcTurbocharger.boostMin.GetValue();
-		public float boostSettingSteps => MwcTurbocharger.boostSettingSteps.GetValue();
-		public float minSettableBoost => MwcTurbocharger.minSettableBoost.GetValue();
-		public float boostSteepness => MwcTurbocharger.boostSteepness.GetValue();
-		public float boostStartingRpmOffset => MwcTurbocharger.boostStartingRpmOffset.GetValue();
-		public float blowoffDelay => MwcTurbocharger.blowoffDelay.GetValue();
-		public float blowoffTriggerBoost => MwcTurbocharger.blowoffTriggerBoost.GetValue();
-		public float backfireThreshold => MwcTurbocharger.backfireThreshold.GetValue();
-		public int backfireRandomRange => (int)MwcTurbocharger.backfireRandomRange.GetValue();
-		public float rpmMultiplier => MwcTurbocharger.rpmMultiplier.GetValue();
-		public float extraPowerMultiplicator => MwcTurbocharger.extraPowerMultiplicator.GetValue();
-		public float soundboostMinVolume => MwcTurbocharger.soundboostMinVolume.GetValue();
-		public float soundboostMaxVolume => MwcTurbocharger.soundboostMaxVolume.GetValue();
-		public float soundboostPitchMultiplicator => MwcTurbocharger.soundboostPitchMultiplicator.GetValue();
-		public float backfireDelay => MwcTurbocharger.backfireDelay.GetValue();
-		*/
 		public float
 			boostBase; //The base boost conditions are either added or substracted from that resulting in the calculated max boost.
 
@@ -40,7 +21,7 @@ namespace MwcTurbocharger.Turbo
 		public float
 			minSettableBoost; //The minimum possible boost that the user should be able to define when setting the boost on the blowoff valve
 
-		public float boostSteepness; //Used for calculation of the boost. Defines how steep the graph rises".
+		public float boostIncreasement; //Used for calculation of the boost. Defines how steep the graph rises".
 
 		public float
 			boostStartingRpmOffset; //Added to the boost starting rpm to get the starting point of the graph (~zero y position) closer to the starting rpm

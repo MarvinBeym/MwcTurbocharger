@@ -268,28 +268,7 @@ namespace MwcTurbocharger
 			//backfireVolumeSetting = Settings.AddSlider("backfireVolumeSetting ", "Backfire Sound Volume", 0, 200, 100);
 
 			TransmissionHandler.SetupSettings(this);
-
-			/*
-			Settings.AddHeader(this, "", Color.clear);
-			boostBase = Settings.AddSlider(this,"boostBaseSetting", "Boost Base", 0, 2f, 0.8f);
-			boostStartingRpm = Settings.AddSlider(this,"boostStartingRpmSetting", "Boost Starting Rpm", 0, 7000, 2400);
-			boostStartingRpmOffset = Settings.AddSlider(this, "boostStartingRpmOffsetSetting", "Boost Starting Rpm Offset", 1000, 5000, 1000);
-			boostMin = Settings.AddSlider(this,"boostMinSetting", "Boost Min", -0.2f, 1f, -0.04f);
-			minSettableBoost = Settings.AddSlider(this,"minSettableBoostSetting", "Mit Settable Boost", 0.3f, 1.8f, 0.4f);
-			boostSteepness = Settings.AddSlider(this,"boostSteepnessSetting", "Boost Steepness", 0.8f, 2f, 1f);
-			blowoffDelay = Settings.AddSlider(this,"blowoffDelaySetting", "Blowoff Delay", 0.1f, 1.4f, 0.8f);
-			blowoffTriggerBoost = Settings.AddSlider(this,"blowoffTriggerBoostSetting", "Blowoff Trigger Boost", 0.1f, 1f, 0.75f);
-			backfireThreshold = Settings.AddSlider(this,"backfireThresholdSetting", "Backfire RPM Threshold", 1000, 6000, 5500f);
-			backfireRandomRange = Settings.AddSlider(this,"backfireRandomRangeSetting", "Backfire Random Range", 1, 60, 20);
-			rpmMultiplier = Settings.AddSlider(this,"rpmMultiplierSetting", "RPM Multiplier", 1, 30, 10f);
-			extraPowerMultiplicator = Settings.AddSlider(this,"extraPowerMultiplicatorSetting", "Extra Power Multiplicator", 0.2f, 3f, 1.5f);
-			boostSettingSteps = Settings.AddSlider(this, "boostSettingStepsSetting", "Boost Setting Steps", 0.01f, 0.2f, 0.05f);
-			soundboostMinVolume = Settings.AddSlider(this,"soundboostMinVolumeSetting", "Soundboost Min Volume", 0.005f, 0.3f, 0.03f);
-			soundboostMaxVolume = Settings.AddSlider(this,"soundboostMaxVolumeSetting", "Soundboost Max Volume", 0.01f, 0.5f, 0.08f);
-			soundboostPitchMultiplicator = Settings.AddSlider(this,"soundboostPitchMultiplicatorSetting", "Soundboost Pitch Multiplicator", 0.5f, 8f, 5f);
-			backfireDelay = Settings.AddSlider(this, "backfireDelaySetting", "Delay between a backfire trigger", 0.001f, 0.5f, 0.1f, null, 4);
-			*/
-
+            
 			Settings.AddText("Copyright © Marvin Beym 2020-2024");
 		}
 
