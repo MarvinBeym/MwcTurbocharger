@@ -269,7 +269,7 @@ namespace MwcTurbocharger
 
 			TransmissionHandler.SetupSettings(this);
             
-			Settings.AddText("Copyright © Marvin Beym 2020-2024");
+			Settings.AddText("Copyright © Marvin Beym 2020-2026");
 		}
 
 		public void Update()
