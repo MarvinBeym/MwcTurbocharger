@@ -14,7 +14,7 @@ namespace MwcTurbocharger.ModPart
 
 		public TurboBigExhaustOutletTube(TurboBig parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddClampModel(new Vector3(0, -0.089f, 0.6435f), new Vector3(3, 180, -90), 0.725f, 10);
+			AddClampModel(new Vector3(0, -0.089f, 0.6435f), new Vector3(3, 180, -90), 0.725f, 6);
 			AddScrews(
 				new[]
 				{
@@ -22,7 +22,7 @@ namespace MwcTurbocharger.ModPart
 					new Screw(new Vector3(0.041f, 0.166f, -0.131f), new Vector3(0, 0, 0), Screw.Type.Normal),
 					new Screw(new Vector3(0, 0.124f, -0.131f), new Vector3(0, 0, 0), Screw.Type.Normal),
 					new Screw(new Vector3(-0.041f, 0.166f, -0.131f), new Vector3(0, 0, 0), Screw.Type.Normal),
-				}, 0.8f, 10
+				}, 0.8f, 8
 			);
 		}
 	}

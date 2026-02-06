@@ -16,10 +16,10 @@ namespace MwcTurbocharger.ModPart
 
 		public RacingCarbManifold(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddClampModel(new Vector3(-0.025f, 0.06375f, -0.13975f), new Vector3(1, 90, 0), 0.6f, 10);
-			AddClampModel(new Vector3(-0.025f, 0.06775f, -0.05475f), new Vector3(1, 90, 0), 0.6f, 10);
-			AddClampModel(new Vector3(-0.025f, 0.07375f, 0.05525f), new Vector3(1, 90, 0), 0.6f, 10);
-			AddClampModel(new Vector3(-0.025f, 0.07775f, 0.13925f), new Vector3(1, 90, 0), 0.6f, 10);
+			AddClampModel(new Vector3(-0.025f, 0.06375f, -0.13975f), new Vector3(1, 90, 0), 0.6f, 6);
+			AddClampModel(new Vector3(-0.025f, 0.06775f, -0.05475f), new Vector3(1, 90, 0), 0.6f, 6);
+			AddClampModel(new Vector3(-0.025f, 0.07375f, 0.05525f), new Vector3(1, 90, 0), 0.6f, 6);
+			AddClampModel(new Vector3(-0.025f, 0.07775f, 0.13925f), new Vector3(1, 90, 0), 0.6f, 6);
 		}
 	}
 }

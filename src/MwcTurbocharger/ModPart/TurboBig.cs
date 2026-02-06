@@ -36,7 +36,7 @@ namespace MwcTurbocharger.ModPart
 					new Screw(new Vector3(0.077f, 0.0218f, 0.092f), new Vector3(45, -90, 0), Screw.Type.Normal),
 					new Screw(new Vector3(0.112f, -0.0132f, 0.092f), new Vector3(45, -90, 0), Screw.Type.Normal),
 					new Screw(new Vector3(0.112f, -0.0132f, 0.0295f), new Vector3(45, -90, 0), Screw.Type.Normal),
-				}, 0.85f
+				}, 0.85f, 10
 			);
 
 			//PaintingSystem.Setup(partBaseInfo.mod, this, gameObject.FindChild("turboBig-center").FindChild("turboBig-compressor-turbine").gameObject);

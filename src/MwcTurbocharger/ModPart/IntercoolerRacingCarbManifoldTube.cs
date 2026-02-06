@@ -17,13 +17,13 @@ namespace MwcTurbocharger.ModPart
 				new Vector3(-0.121f, -0.035f, -0.209f),
 				new Vector3(0, 90, 0), 
 				0.51f,
-				10
+				6
 			);
 			AddClampModel(
 				new Vector3(-0.04f, 0.002f, 0.206f),
 				new Vector3(-45, 90, 0),
 				0.51f,
-				10
+				6
 			);
 		}
 	}

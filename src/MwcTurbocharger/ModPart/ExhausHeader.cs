@@ -26,7 +26,7 @@ namespace MwcTurbocharger.ModPart
 					new Screw(new Vector3(-0.0088f, -0.031f, 0.0785f), new Vector3(0, -90, 0), Screw.Type.Nut),
 					new Screw(new Vector3(-0.0088f, -0.031f, -0.023f), new Vector3(0, -90, 0), Screw.Type.Nut),
 					new Screw(new Vector3(-0.0088f, -0.031f, -0.123f), new Vector3(0, -90, 0), Screw.Type.Nut),
-				}, 0.8f, 10
+				}, 0.8f, 9
 			);
 		}
 	}

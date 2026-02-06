@@ -13,8 +13,8 @@ namespace MwcTurbocharger.ModPart
 
 		public TurboBigIntercoolerTube(TurboBig parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddClampModel(new Vector3(0.12f, -0.031f, -0.23935f), new Vector3(0, 90, 0), 0.51f, 10);
-			AddClampModel(new Vector3(0.078f, 0.019f, 0.19265f), new Vector3(10, 90, 0), 0.7f, 10);
+			AddClampModel(new Vector3(0.12f, -0.031f, -0.23935f), new Vector3(0, 90, 0), 0.51f, 6);
+			AddClampModel(new Vector3(0.078f, 0.019f, 0.19265f), new Vector3(10, 90, 0), 0.7f, 6);
 		}
 	}
 }
