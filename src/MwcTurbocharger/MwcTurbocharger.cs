@@ -275,8 +275,6 @@ namespace MwcTurbocharger
 		public void Update()
 		{
 			TransmissionHandler.Handle();
-
-			HandleExhaustSystem();
 		}
 
 		public void OnSave()
@@ -314,13 +312,6 @@ namespace MwcTurbocharger
 			}
 		}
 
-		private void HandleExhaustSystem()
-		{
-			//ToDo: implement for MWC
-		}
-
-		private bool fireCylinderAnimationActiveBefore = false;
-
 		private void SetupExhaustSystem()
 		{
 			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
@@ -356,10 +347,6 @@ namespace MwcTurbocharger
 				fireCylinderAnimation.enabled = true;
 				fireCylinderHead.SetActive(true);
 			});
-
-			//ToDo: current implementation of InstallOnCar/UninstallFromCar events can't be used
-			//		when exhaustHeader installs, the direct children event listeners are invoked,
-			//		however any events of further children of those direct children are not invoked
 
 			GameObject exhaustSmoke = CarH.car.FindChild("ExhaustSmoke", true);
 			GameObject exhaustFromEngine = Cache.Find("CORRIS/Simulation/ExhaustCorris/FromEngine");
