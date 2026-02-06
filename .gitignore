@@ -7,6 +7,9 @@
 
 # Project specific files
 /project/versions/*
+/src/MwcTurbocharger/.idea
+/src/MwcTurbocharger/.vs
 /src/.idea
 /src/.vs
 *.log
+*.DotSettings.user
