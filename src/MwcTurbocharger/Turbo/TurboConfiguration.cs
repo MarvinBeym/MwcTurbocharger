@@ -7,57 +7,70 @@ namespace MwcTurbocharger.Turbo
 {
 	public class TurboConfiguration
 	{
-		/*
-	    public float boostBase => MwcTurbocharger.boostBase.GetValue();
-		public float boostStartingRpm => MwcTurbocharger.boostStartingRpm.GetValue();
-		public float boostMin => MwcTurbocharger.boostMin.GetValue();
-		public float boostSettingSteps => MwcTurbocharger.boostSettingSteps.GetValue();
-		public float minSettableBoost => MwcTurbocharger.minSettableBoost.GetValue();
-		public float boostSteepness => MwcTurbocharger.boostSteepness.GetValue();
-		public float boostStartingRpmOffset => MwcTurbocharger.boostStartingRpmOffset.GetValue();
-		public float blowoffDelay => MwcTurbocharger.blowoffDelay.GetValue();
-		public float blowoffTriggerBoost => MwcTurbocharger.blowoffTriggerBoost.GetValue();
-		public float backfireThreshold => MwcTurbocharger.backfireThreshold.GetValue();
-		public int backfireRandomRange => (int)MwcTurbocharger.backfireRandomRange.GetValue();
-		public float rpmMultiplier => MwcTurbocharger.rpmMultiplier.GetValue();
-		public float extraPowerMultiplicator => MwcTurbocharger.extraPowerMultiplicator.GetValue();
-		public float soundboostMinVolume => MwcTurbocharger.soundboostMinVolume.GetValue();
-		public float soundboostMaxVolume => MwcTurbocharger.soundboostMaxVolume.GetValue();
-		public float soundboostPitchMultiplicator => MwcTurbocharger.soundboostPitchMultiplicator.GetValue();
-		public float backfireDelay => MwcTurbocharger.backfireDelay.GetValue();
-		*/
-		public float
-			boostBase; //The base boost conditions are either added or substracted from that resulting in the calculated max boost.
+		/// <summary>
+		/// The base boost conditions are either added or substracted from that resulting in the calculated max boost.
+		/// </summary>
+		public float boostBase;
 
-		public float boostStartingRpm; //The rpm at which boost should start to be generated.
+		/// <summary>
+		/// 
+		/// </summary>
+		public float boostOffset;
 
-		public float
-			boostMin; //The min boost possible (this will also be substracted from the power multiplier when boost is at boostMin.
+		/// <summary>
+		/// The rpm at which boost should start to be generated.
+		/// </summary>
+		public float boostStartingRpm;
 
-		public float
-			boostSettingSteps; //When increasing/decreasing userSetBoost, this value is used to add or substract
+		/// <summary>
+		/// When increasing/decreasing userSetBoost, this value is used to add or substract
+		/// </summary>
+		public float boostSettingSteps;
 
-		public float
-			minSettableBoost; //The minimum possible boost that the user should be able to define when setting the boost on the blowoff valve
+		/// <summary>
+		/// The minimum possible boost that the user should be able to define when setting the boost on the blowoff valve
+		/// </summary>
+		public float minSettableBoost;
 
-		public float boostSteepness; //Used for calculation of the boost. Defines how steep the graph rises".
+		/// <summary>
+		/// Used for calculation of the boost. Defines how steep the graph rises".
+		/// </summary>
+		public float boostSteepness;
 
-		public float
-			boostStartingRpmOffset; //Added to the boost starting rpm to get the starting point of the graph (~zero y position) closer to the starting rpm
+		/// <summary>
+		/// Added to the boost starting rpm to get the starting point of the graph (~zero y position) closer to the starting rpm
+		/// </summary>
+		public float boostStartingRpmOffset;
 
-		public float blowoffDelay; //How long to wait after a blowoff has happened until new boost can be produced.
-		public float blowoffTriggerBoost; //Above how much boost the blowoff can happen.
+		/// <summary>
+		/// How long to wait after a blowoff has happened until new boost can be produced.
+		/// </summary>
+		public float blowoffDelay;
 
-		public float
-			backfireThreshold; //This defines at which rpm it is possible for a backfire to happen / no longer happen
+		/// <summary>
+		/// Above how much boost the blowoff can happen.
+		/// </summary>
+		public float blowoffTriggerBoost;
 
-		public int
-			backfireRandomRange; //This is the number used to find if a backfire should happen (ex. 20 would mean if the random value between 0 and 20 is == 1) -> backfire
+		/// <summary>
+		/// This defines at which rpm it is possible for a backfire to happen / no longer happen
+		/// </summary>
+		public float backfireThreshold;
 
-		public float rpmMultiplier; //Multiplier used for calculating the turbo rpm.
+		/// <summary>
+		/// This is the number used to find if a backfire should happen (ex. 20 would mean if the random value between 0 and 20 is == 1) -> backfire
+		/// </summary>
+		public int backfireRandomRange;
 
-		public float
-			extraPowerMultiplicator; //By how much to multiply the boost that is later applied to the engines power multiplier.
+		/// <summary>
+		/// Multiplier used for calculating the turbo rpm.
+		/// </summary>
+		public float rpmMultiplier;
+
+		/// <summary>
+		/// By how much to multiply the boost that is later applied to the engines power multiplier.
+		/// </summary>
+		public float extraPowerMultiplicator;
 
 		public float soundboostMinVolume;
 		public float soundboostMaxVolume;
