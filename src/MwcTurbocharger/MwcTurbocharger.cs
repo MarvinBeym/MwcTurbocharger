@@ -220,12 +220,12 @@ namespace MwcTurbocharger
 			shop.Add(
 				shopBaseInfo, shopLocation, new[]
 				{
-					new ShopItem("Turbocharger Kit", 8100, shopSpawnLocation, turboBigKit, "turboBig-kit.png"),
-					new ShopItem("Turbocharger Blowoff Valve", 1350, shopSpawnLocation, turboBigBlowoffValve, "turboBig-blowoff-valve.png"),
-					new ShopItem("Racing Carb Manifold Kit", 4000, shopSpawnLocation, racingCarbManifoldKit, "racingCarb-manifold-kit.png"),
-					new ShopItem("Intercooler", 3000, shopSpawnLocation, intercooler, "intercooler.png"),
-					new ShopItem("Boost Gauge", 180, shopSpawnLocation, boostGauge, "boost-gauge.png"),
-					new ShopItem("Turbocharger Exhaust Header", 2100, shopSpawnLocation, exhaustHeader, "exhaust-header.png"),
+					new ShopItem("Turbocharger Kit", 4000, shopSpawnLocation, turboBigKit, "turboBig-kit.png"),
+					new ShopItem("Turbocharger Blowoff Valve", 350, shopSpawnLocation, turboBigBlowoffValve, "turboBig-blowoff-valve.png"),
+					new ShopItem("Racing Carb Manifold Kit", 2000, shopSpawnLocation, racingCarbManifoldKit, "racingCarb-manifold-kit.png"),
+					new ShopItem("Intercooler", 900, shopSpawnLocation, intercooler, "intercooler.png"),
+					new ShopItem("Boost Gauge", 75, shopSpawnLocation, boostGauge, "boost-gauge.png"),
+					new ShopItem("Turbocharger Exhaust Header", 1200, shopSpawnLocation, exhaustHeader, "exhaust-header.png"),
 				}
 			);
 		}
