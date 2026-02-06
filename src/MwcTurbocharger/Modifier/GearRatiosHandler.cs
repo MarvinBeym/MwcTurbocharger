@@ -46,10 +46,6 @@ namespace MwcTurbocharger.Modifier
 
 		public static void SetupSettings(Mod mod)
 		{
-			if (changeGearRatios != null) {
-				return;
-			}
-
 			Settings.AddHeader("Change Car Transmission type", Color.clear);
 			changeGearRatios = Settings.AddDropDownList(
 				"changeGearRatios", "Change Car Gear ratios (IGNORE = disabled logic, allowing other mods to change)",

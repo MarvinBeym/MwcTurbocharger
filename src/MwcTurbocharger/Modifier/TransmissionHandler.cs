@@ -27,10 +27,6 @@ namespace MwcTurbocharger.Modifier
 
 		public static void SetupSettings(Mod mod)
 		{
-			if (changeTransmission != null) {
-				return;
-			}
-
 			Settings.AddHeader("Change Car Transmission type", Color.clear);
 			changeTransmission = Settings.AddDropDownList(
 				"changeTransmission",
