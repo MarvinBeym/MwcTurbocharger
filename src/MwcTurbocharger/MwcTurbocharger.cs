@@ -268,7 +268,6 @@ namespace MwcTurbocharger
 			//backfireVolumeSetting = Settings.AddSlider("backfireVolumeSetting ", "Backfire Sound Volume", 0, 200, 100);
 
 			TransmissionHandler.SetupSettings(this);
-			GearRatiosHandler.SetupSettings(this);
 
 			/*
 			Settings.AddHeader(this, "", Color.clear);
@@ -297,7 +296,6 @@ namespace MwcTurbocharger
 		public void Update()
 		{
 			TransmissionHandler.Handle();
-			GearRatiosHandler.Handle();
 
 			HandleExhaustSystem();
 		}
