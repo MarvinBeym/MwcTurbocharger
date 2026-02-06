@@ -125,7 +125,7 @@ namespace MwcTurbocharger.Turbo
 			float soundBoost = CalculateBoost(engineRpm);
 
 			soundBoost = soundBoost.Map(
-				-config.boostOffset, boostMaxConfigured, config.soundboostMinVolume, config.soundboostMaxVolume
+				config.boostMin, boostMaxConfigured, config.soundboostMinVolume, config.soundboostMaxVolume
 			);
 
 			audioHandler.Play(
@@ -154,7 +154,7 @@ namespace MwcTurbocharger.Turbo
 			bool shifting = UserInteraction.ThrottleDown && (CarH.drivetrain.changingGear);
 			bool lettingGoOfThrottle = !UserInteraction.ThrottleDown;
 			if (boost >= config.blowoffTriggerBoost && blowoffAllowed == true && (shifting || lettingGoOfThrottle)) {
-				boost = -config.boostOffset;
+				boost = config.boostMin;
 				blowoffAllowed = false;
 				blowoffTimer = 0;
 				audioHandler.Play(blowoffAudio, 0.2f * MwcTurbocharger.blowoffVolumeSetting.GetValue() / 100);
@@ -162,7 +162,7 @@ namespace MwcTurbocharger.Turbo
 
 			if (blowoffTimer >= config.blowoffDelay) {
 				try {
-					boost = boost = Mathf.Clamp(CalculateBoost(engineRpm), -config.boostOffset, boostMaxConfigured);
+					boost = boost = Mathf.Clamp(CalculateBoost(engineRpm), config.boostMin, boostMaxConfigured);
 
 					if (boost > 0) {
 						//if ((bool)mod.partsWearSetting.Value && (turbo.wears.Length > 0 || turbo.wears == null)) { boost = HandleWear(boost); }
@@ -176,7 +176,7 @@ namespace MwcTurbocharger.Turbo
 					Logger.Warning("Exception was thrown while trying to calculate turbo boost", ex);
 				}
 			} else {
-				boost = -config.boostOffset;
+				boost = config.boostMin;
 			}
 
 			boostGauge.SetBoost(boostBeforeRelease);
@@ -270,24 +270,22 @@ namespace MwcTurbocharger.Turbo
 			float rpm,
 			float startingRpm,
 			float startingRpmOffset,
+			float boostMin,
 			float boostMax,
-			float boostOffset,
 			float steepness
 		)
 		{
-			float function = ((boostMax + boostOffset) / (1 + (float) Math.Exp(-(steepness / 1000) * (rpm - startingRpm - startingRpmOffset))) - boostOffset);
-			return Mathf.Clamp(function, -boostOffset, boostMax);
+			float function = boostMax
+			                 / (1 + (float) Math.Exp(-(steepness / 1000) * (rpm - startingRpm - startingRpmOffset)));
+			//float function = boostMax * (float)Math.Tanh((rpm - startingRpm) / (steepness));
+			return Mathf.Clamp(function, boostMin, boostMax);
 		}
 
 		public float CalculateBoost(float rpm)
 		{
 			float newBoostMax = Mathf.Clamp(setBoost, config.minSettableBoost, boostMaxConfigured);
 			return GetBoostCalculationFunction(
-				rpm, 
-				config.boostStartingRpm, 
-				config.boostStartingRpmOffset, 
-				newBoostMax,
-				config.boostOffset,
+				rpm, config.boostStartingRpm, config.boostStartingRpmOffset, config.boostMin, newBoostMax,
 				config.boostSteepness
 			);
 		}
