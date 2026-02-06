@@ -52,11 +52,11 @@ namespace MwcTurbocharger.ModPart
 		{
 			return new TurboConfiguration()
 			{
-				boostBase = 1f,
-				boostStartingRpm = 2000,
+				boostBase = 0.9f,
+				boostStartingRpm = 1500,
 				boostMin = -0.10f,
 				minSettableBoost = 0.6f,
-				boostIncreasement = 1500f,
+				boostIncreasement = 3000f,
 				blowoffDelay = 0.2f,
 				blowoffTriggerBoost = 0.6f,
 				backfireThreshold = 4000,
