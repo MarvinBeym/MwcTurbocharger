@@ -190,16 +190,20 @@ namespace MwcTurbocharger.ModPart
 
 			if (error)
 			{
-				error = false;
+				analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
+				SetDigitalText("ERR");
+				return;
 			}
 
 			switch (gaugeMode)
 			{
 				case BoostGauge.GaugeMode.Analog:
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, GetNeedleAngle(boost));
+					SetDigitalText("");
 					break;
 				case BoostGauge.GaugeMode.Digital:
 					SetDigitalText(boost);
+					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 					break;
 			}
 		}
@@ -301,8 +305,8 @@ namespace MwcTurbocharger.ModPart
 
 		public bool error
 		{
-			get => digitalText.text == "ERR";
-			set => SetDigitalText(value ? "ERR" : digitalText.text);
+			get;
+			set;
 		}
 	}
 }

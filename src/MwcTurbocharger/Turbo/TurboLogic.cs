@@ -116,7 +116,13 @@ namespace MwcTurbocharger.Turbo
 					boostGauge.error = CarH.hasPower;
 				}
 
+				boostGauge.SetBoost(0);
 				return;
+			}
+
+			if (boostGauge.error) {
+				boostGauge.error = false;
+				boostGauge.SetBoost(0);
 			}
 
 			blowoffTimer += Time.deltaTime;
