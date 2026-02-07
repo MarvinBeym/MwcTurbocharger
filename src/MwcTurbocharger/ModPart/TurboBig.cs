@@ -54,7 +54,7 @@ namespace MwcTurbocharger.ModPart
 			{
 				boostBase = 0.9f,
 				boostStartingRpm = 1500,
-				boostMin = -0.10f,
+				boostMin = -0.05f,
 				minSettableBoost = 0.6f,
 				boostIncreasement = 3000f,
 				blowoffDelay = 0.2f,

@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
+using MwcModApi.GlobalEvent;
 using MwcModApi.Parts.PartBox;
 using MwcTurbocharger.Modifier;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace MwcTurbocharger
 		public override string ID => "MwcTurbocharger";
 		public override string Name => "Turbocharger";
 		public override string Author => "DonnerPlays";
-		public override string Version => "1.0";
+		public override string Version => "1.0.1";
 		public override string Description => "A Turbocharger for the main car (corris)";
 		public override MSCLoader.Game SupportedGames => MSCLoader.Game.MyWinterCar;
 
@@ -83,15 +84,17 @@ namespace MwcTurbocharger
 		private Kit turboBigKit;
 		private Kit racingCarbManifoldKit;
 
+		private Transform exhaustSmokeDeterminedParent = null;
+
 		public override void ModSetup()
 		{
 			SetupFunction(Setup.OnNewGame, OnNewGame);
 			SetupFunction(
 				Setup.OnLoad, () =>
 				{
-					ModConsole.Print($"{Name} [v{Version} started loading");
+					ModConsole.Print($"{Name} [v{Version}] started loading");
 					OnLoad();
-					ModConsole.Print($"{Name} [v{Version} finished loading");
+					ModConsole.Print($"{Name} [v{Version}] finished loading");
 				}
 			);
 			SetupFunction(Setup.ModSettings, ModSettings);
@@ -359,35 +362,51 @@ namespace MwcTurbocharger
 				{
 					return;
 				}
-				exhaustSmoke.transform.SetParent(exhaustHeader.transform, false);
+
+				exhaustSmokeDeterminedParent = exhaustHeader.transform;
+				exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
 			});
 
 			exhaustHeader.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
 			{
-				exhaustSmoke.transform.SetParent(exhaustFromEngine.transform, false);
+				exhaustSmokeDeterminedParent = exhaustFromEngine.transform;
+				exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
 			});
 
 			turboBigExhaustOutletTube.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
 			{
 				if (exhaustPipeRear.installedOnCar && !exhaustMuffler.installedOnCar) {
-					exhaustSmoke.transform.SetParent(exhaustFromPipeRear.transform, false);
+					exhaustSmokeDeterminedParent = exhaustFromPipeRear.transform;
 				} else if (exhaustMuffler.installedOnCar && exhaustPipeRear.installedOnCar) {
-					exhaustSmoke.transform.SetParent(exhaustFromMufflerRear.transform, false);
+					exhaustSmokeDeterminedParent = exhaustFromMufflerRear.transform;
 				} else {
-					exhaustSmoke.transform.SetParent(turboBigExhaustOutletTube.transform, false);
+					exhaustSmokeDeterminedParent = turboBigExhaustOutletTube.transform;
 				}
+
+				exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
 			});
 
 			turboBigExhaustOutletTube.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
 			{
-				if (exhaustHeader.installedOnCar)
+				if (!exhaustHeader.installedOnCar)
 				{
-					exhaustSmoke.transform.SetParent(exhaustHeader.transform, false);
+					exhaustSmokeDeterminedParent = exhaustHeader.transform;
+					exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
 					return;
 				}
 
-				exhaustSmoke.transform.parent.SetParent(exhaustFromEngine.transform, false);
+				exhaustSmokeDeterminedParent = exhaustFromEngine.transform;
+				exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
 			});
+
+			GlobalEventSystem.GetInstance().AddEventListener(
+				GlobalEventType.EngineRunning, () =>
+				{
+					if (exhaustSmokeDeterminedParent != null && exhaustSmoke.transform.parent != exhaustSmokeDeterminedParent) {
+						exhaustSmoke.transform.SetParent(exhaustSmokeDeterminedParent, false);
+					}
+				}
+			);
 		}
 
 		private void PosReset()

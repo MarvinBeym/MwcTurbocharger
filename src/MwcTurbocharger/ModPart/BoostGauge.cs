@@ -61,7 +61,7 @@ namespace MwcTurbocharger.ModPart
 
 		public BoostGauge(GamePart parent) : base(parent, MwcTurbocharger.partBaseInfo)
 		{
-			AddScrew(new Screw(new Vector3(0, -0.0369f, 0), new Vector3(-90, 0, 0), 0.4f, 6, Screw.Type.Normal, Screw.transformStep / 2));
+			AddScrew(new Screw(new Vector3(0, -0.0369f, 0), new Vector3(-90, 0, 0), 0.4f, 6, Screw.Type.Normal, Screw.TRANSFORM_STEP / 2));
 
 			logic = AddEventBehaviour<BoostGaugeLogic>(PartEvent.Type.InstallOnCar);
 			logic.Init(this);
@@ -190,26 +190,30 @@ namespace MwcTurbocharger.ModPart
 
 			if (error)
 			{
-				error = false;
+				analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
+				SetDigitalText("ERR");
+				return;
 			}
 
 			switch (gaugeMode)
 			{
 				case BoostGauge.GaugeMode.Analog:
 					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, GetNeedleAngle(boost));
+					SetDigitalText("");
 					break;
 				case BoostGauge.GaugeMode.Digital:
 					SetDigitalText(boost);
+					analogNeedle.transform.localEulerAngles = new Vector3(0, 0, minAngle);
 					break;
 			}
 		}
 
-		public void SetDigitalText(string text)
+		private void SetDigitalText(string text)
 		{
 			digitalText.text = text;
 		}
 
-		public void SetDigitalText(float text)
+		private void SetDigitalText(float text)
 		{
 			digitalText.text = text.ToString("0.00");
 		}
@@ -230,7 +234,7 @@ namespace MwcTurbocharger.ModPart
 			}
 		}
 
-		public void OnSwitchedElectricityOn()
+		private void OnSwitchedElectricityOn()
 		{
 			if (gaugeMode == GaugeMode.Analog)
 			{
@@ -249,7 +253,7 @@ namespace MwcTurbocharger.ModPart
 			ChangeAnalogColor(selectedColor);
 		}
 
-		public void OnSwitchedElectricityOff()
+		private void OnSwitchedElectricityOff()
 		{
 			if (analogNeedleAnimation.isPlaying)
 			{
@@ -301,8 +305,8 @@ namespace MwcTurbocharger.ModPart
 
 		public bool error
 		{
-			get => digitalText.text == "ERR";
-			set => SetDigitalText(value ? "ERR" : digitalText.text);
+			get;
+			set;
 		}
 	}
 }
