@@ -89,9 +89,9 @@ namespace MwcTurbocharger
 			SetupFunction(
 				Setup.OnLoad, () =>
 				{
-					ModConsole.Print($"{Name} [v{Version} started loading");
+					ModConsole.Print($"{Name} [v{Version}] started loading");
 					OnLoad();
-					ModConsole.Print($"{Name} [v{Version} finished loading");
+					ModConsole.Print($"{Name} [v{Version}] finished loading");
 				}
 			);
 			SetupFunction(Setup.ModSettings, ModSettings);
