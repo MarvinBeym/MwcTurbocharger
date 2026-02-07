@@ -208,12 +208,12 @@ namespace MwcTurbocharger.ModPart
 			}
 		}
 
-		public void SetDigitalText(string text)
+		private void SetDigitalText(string text)
 		{
 			digitalText.text = text;
 		}
 
-		public void SetDigitalText(float text)
+		private void SetDigitalText(float text)
 		{
 			digitalText.text = text.ToString("0.00");
 		}
@@ -234,7 +234,7 @@ namespace MwcTurbocharger.ModPart
 			}
 		}
 
-		public void OnSwitchedElectricityOn()
+		private void OnSwitchedElectricityOn()
 		{
 			if (gaugeMode == GaugeMode.Analog)
 			{
@@ -253,7 +253,7 @@ namespace MwcTurbocharger.ModPart
 			ChangeAnalogColor(selectedColor);
 		}
 
-		public void OnSwitchedElectricityOff()
+		private void OnSwitchedElectricityOff()
 		{
 			if (analogNeedleAnimation.isPlaying)
 			{

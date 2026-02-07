@@ -22,11 +22,6 @@ namespace MwcTurbocharger
 			analogDigitalSwitch = transform.FindChild("boost-gauge-button").gameObject;
 		}
 
-		void Start()
-		{
-			part.SetDigitalText("");
-		}
-
 		void Update()
 		{
 			if (!CarH.hasPower || !analogDigitalSwitch.IsLookingAt()) {
