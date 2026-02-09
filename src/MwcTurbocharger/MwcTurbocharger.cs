@@ -453,6 +453,47 @@ namespace MwcTurbocharger
 				OnApplyExhaustSmokeManipulation();
 			});
 
+			exhaustPipeRear.AddEventListener(PartEvent.Time.Post, PartEvent.Type.InstallOnCar, () =>
+			{
+				if (turboBigExhaustOutletTube.installedOnCar)
+				{
+					exhaustSmokeDeterminedParent = exhaustFromPipeRear.transform;
+					OnApplyExhaustSmokeManipulation();
+					return;
+				}
+
+
+				if (exhaustHeader.installedOnCar)
+				{
+					exhaustSmokeDeterminedParent = exhaustHeader.transform;
+					OnApplyExhaustSmokeManipulation();
+					return;
+				}
+
+				exhaustSmokeDeterminedParent = exhaustFromEngine.transform;
+				OnApplyExhaustSmokeManipulation();
+			});
+
+			exhaustPipeRear.AddEventListener(PartEvent.Time.Post, PartEvent.Type.UninstallFromCar, () =>
+			{
+				if (turboBigExhaustOutletTube.installedOnCar)
+				{
+					exhaustSmokeDeterminedParent = turboBigExhaustOutletTube.transform;
+					OnApplyExhaustSmokeManipulation();
+					return;
+				}
+
+				if (exhaustHeader.installedOnCar)
+				{
+					exhaustSmokeDeterminedParent = exhaustHeader.transform;
+					OnApplyExhaustSmokeManipulation();
+					return;
+				}
+
+				exhaustSmokeDeterminedParent = exhaustFromEngine.transform;
+				OnApplyExhaustSmokeManipulation();
+			});
+
 			GlobalEventSystem.GetInstance().AddEventListener(GlobalEventType.EngineRunning, OnApplyExhaustSmokeManipulation);
 		}
 
