@@ -26,7 +26,7 @@ namespace MwcTurbocharger
 		public override string ID => "MwcTurbocharger";
 		public override string Name => "Turbocharger";
 		public override string Author => "DonnerPlays";
-		public override string Version => "1.0.1";
+		public override string Version => "1.0.2";
 		public override string Description => "A Turbocharger for the main car (corris)";
 		public override MSCLoader.Game SupportedGames => MSCLoader.Game.MyWinterCar;
 
